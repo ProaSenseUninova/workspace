@@ -1,0 +1,195 @@
+package dataServer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+ 
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
+
+public class Main extends AbstractHandler{
+	
+	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq)
+	{
+		try {
+			response.getWriter().println("Getting data");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertData(HttpServletResponse response,String dbName,String tableName,Object data)
+	{
+		try {
+			response.getWriter().println("Inserting data");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateData(HttpServletResponse response,String dbName,String tableName,Object data)
+	{
+		try {
+			response.getWriter().println("Updating data");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteData(HttpServletResponse response,String dbName,String tableName,Object data)
+	{
+		try {
+			response.getWriter().println("Deleting data");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+    public void handle(String target,
+    		
+            Request baseRequest,
+            HttpServletRequest request,
+            HttpServletResponse response) 
+    
+			throws IOException, ServletException
+			{
+    				String method = baseRequest.getMethod();
+    				String[] parts = target.split("/");
+    				JSONParser parser = new JSONParser();
+    				Object obj = null;
+    				String data ="";
+    				String line=null;
+    				Integer idReq = null;
+    				try
+    				{
+	    				BufferedReader reader = baseRequest.getReader();
+	    				while((line=reader.readLine())!=null)
+	    				{
+	    					data=data+line;
+	    				}
+	    			}
+    				catch(Exception e)
+    				{
+    					
+    				}
+
+					response.setContentType("application/json;charset=utf-8");
+					response.setStatus(HttpServletResponse.SC_OK);
+					baseRequest.setHandled(true);
+					
+					
+					
+
+					if(parts.length>2)
+					{
+						if(parts.length>3)
+						{
+							try
+							{
+								idReq = Integer.parseInt(parts[3]);
+							}
+							catch(Exception e)
+							{
+							
+							}
+						}
+						String dbName=parts[1];
+						String tableName = parts[2];
+						JSONObject tmpObj = null;
+						JSONArray tmpArr = null;
+						response.getWriter().println("ww");
+						response.getWriter().println(idReq);
+						if(method=="GET")
+						{
+							getData(response,dbName,tableName,idReq);
+						}
+						else
+						{
+							try {
+								obj = parser.parse(data);
+								if(method=="POST")
+								{
+									tmpObj = (JSONObject)obj;
+									Object type = tmpObj.get("type");
+									Object reqData = tmpObj.get("data");
+									
+									if(type!=null )
+									{
+										if(type.equals("GET"))
+										{
+											getData(response,dbName,tableName,idReq);
+										}
+										else if(type.equals("INSERT") && reqData!=null)
+										{
+											insertData(response,dbName,tableName,reqData);
+										}
+										else if(type.equals("UPDATE") && reqData!=null)
+										{
+											updateData(response,dbName,tableName,reqData);
+										}
+										else if(type.equals("DELETE") && reqData!=null)
+										{
+											deleteData(response,dbName,tableName,reqData);
+										}
+									}
+									
+								}
+								else if(method.equals("PUT"))
+								{
+									insertData(response,dbName,tableName,obj);
+									
+								}
+								else if(method.equals("PATCH"))
+								{
+									updateData(response,dbName,tableName,obj);
+								}
+								else if(method.equals("DELETE"))
+								{
+									deleteData(response,dbName,tableName,obj);
+								}							
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								response.getWriter().println(e);
+							}
+						}
+
+					}						
+
+					
+
+			}
+	public static void main(String[] args)
+	{
+        Server server = new Server(8085);
+        server.setHandler(new Main());
+ 
+        try {
+			server.start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			server.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+}
