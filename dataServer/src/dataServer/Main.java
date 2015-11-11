@@ -362,14 +362,8 @@ public class Main extends AbstractHandler
 		
 	}
 	
-    public void handle(String target,
-    		
-            Request baseRequest,
-            HttpServletRequest request,
-            HttpServletResponse response) 
-    
-			throws IOException, ServletException
-			{		
+    public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{		
     				String method = baseRequest.getMethod();
     				String remoteAddress = baseRequest.getHeader("X-Forwarded-for")==null?baseRequest.getRemoteAddr():baseRequest.getHeader("X-Forwarded-for");
     				writeLogMsg(method+" Request from: "+ remoteAddress + " Request target: " + target);
