@@ -21,13 +21,14 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+import dataServer.database.DBConfig;
 
 
 public class Main extends AbstractHandler
 {
 	static LoggingSystem _log = LoggingSystem.getLog();
+	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "sa", "");
+	
 	
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress)
 	{
@@ -46,7 +47,7 @@ public class Main extends AbstractHandler
 			}
 			else
 			{
-				Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db/"+dbName, "sa", "");
+				Connection c = DriverManager.getConnection(dbConfig.jdbcURL+dbName, dbConfig.userName, dbConfig.password);
 				Statement s =  c.createStatement();
 				String query = "SELECT * FROM \""+tableName+"\"";
 				if(idReq!=null)
@@ -124,7 +125,6 @@ public class Main extends AbstractHandler
 			
 	}
 	
-	
 	public Object getGraphData()
 	{
 		try
@@ -132,19 +132,19 @@ public class Main extends AbstractHandler
 			JSONParser parser = new JSONParser();
 			JSONObject obj = new JSONObject();
 			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
-					+ "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
-					+ "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
-					+ "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
-					+ "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
-			
-					
+									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
+									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
+									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
+									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
 			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
 			Object labels = parser.parse("[\"December\",\"January\",\"February\",\"March\",\"April\",\"May\"]");
+
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
 			obj.put("title", "Availability");
 			obj.put("subTitle", "Source: use case data");
+			
 			return obj;
 		}
 		catch(Exception e)
@@ -154,7 +154,6 @@ public class Main extends AbstractHandler
 		}
 	}
 	
-	
 	public Object getHeatMapData()
 	{
 		try
@@ -162,23 +161,23 @@ public class Main extends AbstractHandler
 			JSONObject obj = new JSONObject();
 			JSONParser parser = new JSONParser();
 			Object data = parser.parse("[{\"varY\":1,\"varX\":1,\"value\":9},"
-					+ "{\"varY\":1,\"varX\":2,\"value\":78},"
-					+ "{\"varY\":1,\"varX\":3,\"value\":123},"
-					+ "{\"varY\":1,\"varX\":4,\"value\":114},"
-					+ "{\"varY\":1,\"varX\":5,\"value\":8},"
-					+ "{\"varY\":1,\"varX\":6,\"value\":12},"
-					+ "{\"varY\":2,\"varX\":1,\"value\":19},"
-					+ "{\"varY\":2,\"varX\":2,\"value\":58},"
-					+ "{\"varY\":2,\"varX\":3,\"value\":15},"
-					+ "{\"varY\":2,\"varX\":4,\"value\":132},"
-					+ "{\"varY\":2,\"varX\":5,\"value\":5},"
-					+ "{\"varY\":2,\"varX\":6,\"value\":32},"
-					+ "{\"varY\":3,\"varX\":1,\"value\":10},"
-					+ "{\"varY\":3,\"varX\":2,\"value\":92},"
-					+ "{\"varY\":3,\"varX\":3,\"value\":35},"
-					+ "{\"varY\":3,\"varX\":4,\"value\":72},"
-					+ "{\"varY\":3,\"varX\":5,\"value\":38},"
-					+ "{\"varY\":3,\"varX\":6,\"value\":88}]");
+									  + "{\"varY\":1,\"varX\":2,\"value\":78},"
+									  + "{\"varY\":1,\"varX\":3,\"value\":123},"
+									  + "{\"varY\":1,\"varX\":4,\"value\":114},"
+									  + "{\"varY\":1,\"varX\":5,\"value\":8},"
+									  + "{\"varY\":1,\"varX\":6,\"value\":12},"
+									  + "{\"varY\":2,\"varX\":1,\"value\":19},"
+									  + "{\"varY\":2,\"varX\":2,\"value\":58},"
+									  + "{\"varY\":2,\"varX\":3,\"value\":15},"
+									  + "{\"varY\":2,\"varX\":4,\"value\":132},"
+									  + "{\"varY\":2,\"varX\":5,\"value\":5},"
+									  + "{\"varY\":2,\"varX\":6,\"value\":32},"
+									  + "{\"varY\":3,\"varX\":1,\"value\":10},"
+									  + "{\"varY\":3,\"varX\":2,\"value\":92},"
+									  + "{\"varY\":3,\"varX\":3,\"value\":35},"
+									  + "{\"varY\":3,\"varX\":4,\"value\":72},"
+									  + "{\"varY\":3,\"varX\":5,\"value\":38},"
+									  + "{\"varY\":3,\"varX\":6,\"value\":88}]");
 			Object yLabels = parser.parse("[\"Evening\", \"Afternoon\", \"Moorning\"]");
 			Object xLabels = parser.parse("[\"Product A\", \"Product B\", \"Product C\", \"Product D\", \"product E\",\"Product F\"]");
 			obj.put("data", data);
@@ -194,6 +193,7 @@ public class Main extends AbstractHandler
 		}
 		
 	}
+
 	public void insertData(HttpServletResponse response,String dbName,String tableName,Object data,String remoteAddress)
 	{
 		try {
@@ -235,7 +235,7 @@ public class Main extends AbstractHandler
 				}
 			}
 			
-			Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db/"+dbName, "sa", "");
+			Connection c = DriverManager.getConnection(dbConfig.jdbcURL+dbName, dbConfig.userName, dbConfig.password);
 			writeLogMsg("SQL Query: "+query);
 
 			PreparedStatement s =  c.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
@@ -295,7 +295,7 @@ public class Main extends AbstractHandler
 				
 			}
 			query=query.substring(0,query.length()-1)+" WHERE \""+idEl+"\"="+id;
-			Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db/"+dbName, "sa", "");
+			Connection c = DriverManager.getConnection(dbConfig.jdbcURL+dbName, dbConfig.userName, dbConfig.password);
 			Statement s =  c.createStatement();
 			writeLogMsg("SQL Query: "+query);
 
@@ -315,6 +315,7 @@ public class Main extends AbstractHandler
 			}
 		}
 	}
+	
 	public void deleteData(HttpServletResponse response,String dbName,String tableName,Object data,String remoteAddress)
 	{
 		try {
@@ -322,7 +323,7 @@ public class Main extends AbstractHandler
 			String query = "DELETE FROM \""+tableName+"\" WHERE ";
 			JSONArray parsedData =  (JSONArray)data;
 			JSONObject obj=null;
-			Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db/"+dbName, "sa", "");
+			Connection c = DriverManager.getConnection(dbConfig.jdbcURL+dbName, dbConfig.userName, dbConfig.password);
 			Statement s =  c.createStatement();
 			for(int i=0;i<parsedData.size();i++)
 			{
@@ -490,14 +491,12 @@ public class Main extends AbstractHandler
 					
 
 			}
- 
     
     private static void writeLogMsg(String msg)
     {
 		System.out.println(msg);
 		_log.saveToFile(msg);
     }
-  
     
 	public static void main(String[] args) throws SQLException
 	{
