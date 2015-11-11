@@ -29,7 +29,6 @@ public class Main extends AbstractHandler
 	static LoggingSystem _log = LoggingSystem.getLog();
 	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "sa", "");
 	
-	
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress)
 	{
 		try {
@@ -327,7 +326,8 @@ public class Main extends AbstractHandler
 			Statement s =  c.createStatement();
 			for(int i=0;i<parsedData.size();i++)
 			{
-				obj =(JSONObject)parsedData.get(i);
+				obj = (JSONObject)parsedData.get(i);
+				
 				if(tableName.equals("kpi_target"))
 				{
 					query = query+"\"kpi_target_id\"="+obj.get("kpi_target_id");
@@ -336,6 +336,7 @@ public class Main extends AbstractHandler
 				{
 					query = query+"\"id\"="+obj.get("id");
 				}
+				
 				if(i<parsedData.size()-1)
 				{
 					query=query+" OR ";
@@ -364,127 +365,126 @@ public class Main extends AbstractHandler
 	
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{		
-    				String method = baseRequest.getMethod();
-    				String remoteAddress = baseRequest.getHeader("X-Forwarded-for")==null?baseRequest.getRemoteAddr():baseRequest.getHeader("X-Forwarded-for");
-    				writeLogMsg(method+" Request from: "+ remoteAddress + " Request target: " + target);
-    				
-    				Enumeration<String> headers = baseRequest.getHeaderNames();
-    				while (headers.hasMoreElements()) 
-    				{
-    					String header = headers.nextElement();
-    					String headerContent = baseRequest.getHeader(header);
-    					writeLogMsg("Header: "+ header + " " + headerContent);
-    				}
+		String method = baseRequest.getMethod();
+		String remoteAddress = baseRequest.getHeader("X-Forwarded-for")==null?baseRequest.getRemoteAddr():baseRequest.getHeader("X-Forwarded-for");
+		
+		writeLogMsg(method+" Request from: "+ remoteAddress + " Request target: " + target);
+		writeReceivedHeadersToLog(baseRequest);
 
-    				String[] parts = target.split("/");
-    				JSONParser parser = new JSONParser();
-    				Object obj = null;
-    				String data ="";
-    				String line=null;
-    				Integer idReq = null;
-    				try
-    				{
-	    				BufferedReader reader = baseRequest.getReader();
-	    				while((line=reader.readLine())!=null)
-	    				{
-	    					data=data+line;
-	    				}
+		String[] parts = target.split("/");
+		JSONParser parser = new JSONParser();
+		Object obj = null;
+		String data ="";
+		String line=null;
+		Integer idReq = null;
 
-    				}
-    				catch(Exception e)
-    				{
-    					
-    				}
-
-					response.setContentType("application/json;charset=utf-8");
-					response.setStatus(HttpServletResponse.SC_OK);
-					baseRequest.setHandled(true);
-					
-					
-					
-
-					if(parts.length>2)
-					{
-						if(data!="")
-						{
-							writeLogMsg("Payload: "+data);
-						}
-						if(parts.length>3)
-						{
-							try
-							{
-								idReq = Integer.parseInt(parts[3]);
-								writeLogMsg("Id requested: "+idReq);
-							}
-							catch(Exception e)
-							{
-							
-							}
-						}
-						String dbName=parts[1];
-						String tableName = parts[2];
-						JSONObject tmpObj = null;
-						JSONArray tmpArr = null;
-						if(method=="GET")
-						{
-							getData(response,dbName,tableName,idReq,remoteAddress);
-						}
-						else
-						{
-							try {
-								obj = parser.parse(data);
-								if(method=="POST")
-								{
-									tmpObj = (JSONObject)obj;
-									Object type = tmpObj.get("type");
-									Object reqData = tmpObj.get("data");
-									
-									if(type!=null )
-									{
-										if(type.equals("GET"))
-										{
-											getData(response,dbName,tableName,idReq,remoteAddress);
-										}
-										else if(type.equals("INSERT") && reqData!=null)
-										{
-											insertData(response,dbName,tableName,reqData,remoteAddress);
-										}
-										else if(type.equals("UPDATE") && reqData!=null)
-										{
-											updateData(response,dbName,tableName,reqData,remoteAddress);
-										}
-										else if(type.equals("DELETE") && reqData!=null)
-										{
-											deleteData(response,dbName,tableName,reqData,remoteAddress);
-										}
-									}
-									
-								}
-								else if(method.equals("PUT"))
-								{
-									insertData(response,dbName,tableName,obj,remoteAddress);
-									
-								}
-								else if(method.equals("PATCH"))
-								{
-									updateData(response,dbName,tableName,obj,remoteAddress);
-								}
-								else if(method.equals("DELETE"))
-								{
-									deleteData(response,dbName,tableName,obj,remoteAddress);
-								}							
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								response.getWriter().println("{\"succeeded\":false,\"result\":\""+e.toString().replace("\"", "\\\"")+"\"}");
-								writeLogMsg("Response at: "+remoteAddress);
-							}
-						}
-
-					}						
-
-					
-
+		try
+		{
+			BufferedReader reader = baseRequest.getReader();
+			while((line=reader.readLine())!=null)
+			{
+				data=data+line;
 			}
+
+		}
+		catch(Exception e)
+		{
+			
+		}
+
+		response.setContentType("application/json;charset=utf-8");
+		response.setStatus(HttpServletResponse.SC_OK);
+		baseRequest.setHandled(true);
+
+		if(parts.length>2)
+		{
+			if(data!="")
+			{
+				writeLogMsg("Payload: "+data);
+			}
+			if(parts.length>3)
+			{
+				try
+				{
+					idReq = Integer.parseInt(parts[3]);
+					writeLogMsg("Id requested: "+idReq);
+				}
+				catch(Exception e)
+				{
+				
+				}
+			}
+			
+			String dbName=parts[1];
+			String tableName = parts[2];
+			JSONObject tmpObj = null;
+			JSONArray tmpArr = null;
+			
+			if(method=="GET")
+			{
+				getData(response,dbName,tableName,idReq,remoteAddress);
+			}
+			else
+			{
+				try {
+					obj = parser.parse(data);
+					if(method=="POST")
+					{
+						tmpObj = (JSONObject)obj;
+						Object type = tmpObj.get("type");
+						Object reqData = tmpObj.get("data");
+						
+						if(type!=null )
+						{
+							if(type.equals("GET"))
+							{
+								getData(response,dbName,tableName,idReq,remoteAddress);
+							}
+							else if(type.equals("INSERT") && reqData!=null)
+							{
+								insertData(response,dbName,tableName,reqData,remoteAddress);
+							}
+							else if(type.equals("UPDATE") && reqData!=null)
+							{
+								updateData(response,dbName,tableName,reqData,remoteAddress);
+							}
+							else if(type.equals("DELETE") && reqData!=null)
+							{
+								deleteData(response,dbName,tableName,reqData,remoteAddress);
+							}
+						}
+						
+					}
+					else if(method.equals("PUT"))
+					{
+						insertData(response,dbName,tableName,obj,remoteAddress);
+					}
+					else if(method.equals("PATCH"))
+					{
+						updateData(response,dbName,tableName,obj,remoteAddress);
+					}
+					else if(method.equals("DELETE"))
+					{
+						deleteData(response,dbName,tableName,obj,remoteAddress);
+					}							
+				} catch (Exception e) {
+					response.getWriter().println("{\"succeeded\":false,\"result\":\""+e.toString().replace("\"", "\\\"")+"\"}");
+					writeLogMsg("Response at: "+remoteAddress);
+				}
+			}
+
+		}						
+	}
+
+	private void writeReceivedHeadersToLog(Request baseRequest) {
+		Enumeration<String> headers = baseRequest.getHeaderNames();
+		while (headers.hasMoreElements()) 
+		{
+			String header = headers.nextElement();
+			String headerContent = baseRequest.getHeader(header);
+			writeLogMsg("Header: "+ header + " " + headerContent);
+		}
+	}
     
     private static void writeLogMsg(String msg)
     {
@@ -501,7 +501,6 @@ public class Main extends AbstractHandler
 	        server.setHandler(new Main());
 			server.start();
 	        writeLogMsg("Server listening on port: "+port);
-	
 		}
 		catch(Exception e)
 		{
@@ -511,6 +510,4 @@ public class Main extends AbstractHandler
 
 	}
 
-	
-	
 }
