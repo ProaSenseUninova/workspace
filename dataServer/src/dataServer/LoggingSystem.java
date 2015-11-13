@@ -29,8 +29,6 @@ public class LoggingSystem {
     private File file = null;
     
     private SimpleDateFormat date = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss:S");
-    private Calendar cal;
-	
     private final Lock lock = new ReentrantLock();
     
 	private LoggingSystem()
@@ -55,7 +53,7 @@ public class LoggingSystem {
 	
 	private void writeLog(String msg)
 	{
-		String msgOutput = "[" + date.format(cal.getInstance().getTime()) +"] "+msg;
+		String msgOutput = "[" + date.format(Calendar.getInstance().getTime()) +"] "+msg;
 		this.out.println(msgOutput);
 	}
 
