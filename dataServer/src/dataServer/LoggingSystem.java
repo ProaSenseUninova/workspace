@@ -51,6 +51,14 @@ public class LoggingSystem {
 		lock.unlock();
 	}
 	
+	public void saveToFile(String msg, String logFileName){
+		lock.lock();
+		this.openFile(_logFolder+logFileName);
+		this.writeLog(msg);
+		this.closeFile();
+		lock.unlock();
+	}
+	
 	private void writeLog(String msg)
 	{
 		String msgOutput = "[" + date.format(Calendar.getInstance().getTime()) +"] "+msg;

@@ -27,7 +27,7 @@ import dataServer.database.DBConfig;
 public class Main extends AbstractHandler
 {
 	static LoggingSystem _log = LoggingSystem.getLog();
-	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "sa", "");
+	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "", "sa", "");
 	
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress)
 	{
@@ -52,15 +52,16 @@ public class Main extends AbstractHandler
 				if(idReq!=null)
 				{
 					writeLogMsg(tableName);
-	
-					if(tableName.equals("kpi_target"))
-					{
-						query=query+" WHERE \"kpi_target_id\"="+idReq;
-					}
-					else
-					{
-						query=query+" WHERE \"id\"="+idReq;
-					}
+					query=query+" WHERE \"id\"="+idReq;
+					
+//					if(tableName.equals("kpi_target"))
+//					{
+//						query=query+" WHERE \"kpi_target_id\"="+idReq;
+//					}
+//					else
+//					{
+//						query=query+" WHERE \"id\"="+idReq;
+//					}
 				}
 	
 				writeLogMsg("SQL Query: "+query);
@@ -277,7 +278,8 @@ public class Main extends AbstractHandler
 			Integer upRows = null;
 			JSONObject obj=(JSONObject)data;
 			String idEl=null;
-			idEl=tableName=="kpi_target"?"kpi_target_id":"id";
+			idEl="id";
+//			idEl=tableName=="kpi_target"?"kpi_target_id":"id";
 			Object id = obj.get(idEl);
 			Object[] propertiesVect = obj.keySet().toArray();
 			query="UPDATE \""+tableName+"\" SET ";
@@ -328,15 +330,17 @@ public class Main extends AbstractHandler
 			{
 				obj = (JSONObject)parsedData.get(i);
 				
-				if(tableName.equals("kpi_target"))
-				{
-					query = query+"\"kpi_target_id\"="+obj.get("kpi_target_id");
-				}
-				else
-				{
-					query = query+"\"id\"="+obj.get("id");
-				}
+//				if(tableName.equals("kpi_target"))
+//				{
+//					query = query+"\"kpi_target_id\"="+obj.get("kpi_target_id");
+//				}
+//				else
+//				{
+//					query = query+"\"id\"="+obj.get("id");
+//				}
 				
+				query = query+"\"id\"="+obj.get("id");
+
 				if(i<parsedData.size()-1)
 				{
 					query=query+" OR ";
