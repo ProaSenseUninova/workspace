@@ -48,11 +48,19 @@ public class DBUtils {
 		try {
 			if ( (dbConnection == null) || (dbConnection.isClosed()) ){
 				this.dbName = dbName;
-				this.dbConfig = new DBConfig(dbConfig.jdbcURL, dbName, dbConfig.userName, dbConfig.password);
-				dbConnection = DriverManager.getConnection(this.dbConfig.jdbcURL+dbName, this.dbConfig.userName, this.dbConfig.password);
+				if (this.dbConfig == null)
+					this.dbConfig = new DBConfig(dbConfig.jdbcURL, dbName, dbConfig.userName, dbConfig.password);
+				String url = this.dbConfig.jdbcURL+dbName;
+				String user = this.dbConfig.userName;
+				String pass = this.dbConfig.password;
+				Class.forName("org.hsqldb.jdbc.JDBCDriver");
+				dbConnection = DriverManager.getConnection(url, user, pass);
 			}
+		} catch (ClassNotFoundException e) {
+			_log.saveToFile("Problem starting db driver: "+e);
 		} catch (SQLException e) {
-			
+			_log.saveToFile("Problem getting connection: "+e.getSQLState());
+			_log.saveToFile("Problem getting connection: (Complete message) "+e);
 		}
 		return dbConnection;
 	}
@@ -266,7 +274,7 @@ public class DBUtils {
 		DBUtils db = new DBUtils();
 
 		
-		db.insertData("", new Object());
+		// db.insertData("", new Object());
 		
 		DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "sa", "");
 		

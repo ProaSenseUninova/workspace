@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import dataServer.database.dbobjects.KpiValues;
+import dataServer.database.enums.TableValueType;
 
 public class fileLoader {
 	
@@ -40,7 +41,7 @@ public class fileLoader {
 			while ((dataLine = bufReader.readLine()) != null) {
 				String[] lineValues = dataLine.split(valueSeparator);
 
-				buffer.add(processLine(lineValues));
+				buffer.add(processLine(lineValues, TableValueType.MOULD));
 
 				if ((buffer.size() % bufferSize) == 0){
 					if (flushBuffer(buffer)){
@@ -69,14 +70,16 @@ public class fileLoader {
 		}
 	}
 	
-	private KpiValues processLine(String[] lineValues){
+	private KpiValues processLine(String[] lineValues, TableValueType table){
 		KpiValues kpiValue = new KpiValues();
 		kpiValue.timestamp = getTimestampValue(lineValues[0]);
 		kpiValue.machineId = getNameId(lineValues[1], "machine", auxiliarMachineIds); 
 		kpiValue.value = Integer.parseInt(lineValues[2]);
 		kpiValue.designation = lineValues[3];
 		kpiValue.goodPart = Boolean.parseBoolean(lineValues[4]);
-		kpiValue.productId = getNameId(lineValues[5], "product", auxiliarProductIds);
+		kpiValue.productId = (table==TableValueType.PRODUCT)?
+								getNameId(lineValues[5], "product", auxiliarProductIds):
+								getNameForeignKeyId(lineValues[5],TableValueType.MOULD.toString(), "product_id",auxiliarProductIds);
 		kpiValue.kpiId = getNameId(getPartDesignation(kpiValue.goodPart), "kpi", auxiliarKpiIds);
 		return kpiValue;
 	}
@@ -103,6 +106,17 @@ public class fileLoader {
 		}
 		
 		return result;
+	}
+	
+	private int getNameForeignKeyId(String valueName, String tableName, String foreignKey, HashMap<String, Integer> auxiliarIds){
+		Integer foreignKeyId  = auxiliarIds.get(valueName);
+		
+		if (foreignKeyId == null) {
+			foreignKeyId = dAO.getForeignKeyId(tableName, foreignKey, valueName);
+			auxiliarIds.put(valueName, foreignKeyId);
+		}
+		
+		return foreignKeyId;
 	}
 
 	private int getNameId(String valueName, String tableName, HashMap<String, Integer> auxiliarIds){
@@ -151,7 +165,7 @@ public class fileLoader {
 			testLog.saveToFile("Finished uploading file: "+csvFile, logFileName);
 			testLog.saveToFile("<<------------------------->>"+csvFile, logFileName);
 		}
-		fl.readCSVFile(csvFiles[0]);
+		
 	}
 
 }

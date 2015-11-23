@@ -27,7 +27,7 @@ import dataServer.database.DBConfig;
 public class Main extends AbstractHandler
 {
 	static LoggingSystem _log = LoggingSystem.getLog();
-	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "", "sa", "");
+	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "", "SA", "");
 	
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress)
 	{
@@ -131,12 +131,19 @@ public class Main extends AbstractHandler
 		{
 			JSONParser parser = new JSONParser();
 			JSONObject obj = new JSONObject();
+//			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
+//									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
+//									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
+//									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
+//									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
+//			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
 			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
 									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
 									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
 									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
+									 + "[5.05, 11.68, 9.10, 8.58, 9.33, 2.40],"
 									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
-			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
+			Object legend = parser.parse("[\"Global\",\"KM1\",\"KM2\",\"KM3\",\"Engel1\", \"Engel2\"]");
 			Object labels = parser.parse("[\"December\",\"January\",\"February\",\"March\",\"April\",\"May\"]");
 
 			obj.put("data", data);
