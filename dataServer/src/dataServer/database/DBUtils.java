@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.SQLTimeoutException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class DBUtils {
 	LoggingSystem _log = LoggingSystem.getLog();
 	private DBConfig dbConfig = null;
 	private String dbName;
+	private Integer totalConnections = 0;
 	
 	public DBUtils() {
 		// TODO Auto-generated constructor stub
@@ -53,11 +55,10 @@ public class DBUtils {
 				String url = this.dbConfig.jdbcURL+dbName;
 				String user = this.dbConfig.userName;
 				String pass = this.dbConfig.password;
-				Class.forName("org.hsqldb.jdbc.JDBCDriver");
+				_log.saveToFile("<Requesting connection #"+(++totalConnections)+" to (loading to memory)> url:"+url );
 				dbConnection = DriverManager.getConnection(url, user, pass);
+				_log.saveToFile("<Connection retrieved> url:"+url );
 			}
-		} catch (ClassNotFoundException e) {
-			_log.saveToFile("Problem starting db driver: "+e);
 		} catch (SQLException e) {
 			_log.saveToFile("Problem getting connection: "+e.getSQLState());
 			_log.saveToFile("Problem getting connection: (Complete message) "+e);

@@ -10,4 +10,16 @@ public class Sensor extends KpiDataObject {
 	public Sensor() {
 		super("sensor");
 	}
+
+	@Override
+	public void loadContents(String[] contents) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object getColumnValue(String column) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,8 +1,7 @@
 package dataServer.database.dbobjects;
-import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
-import java.util.Arrays;
-public class KpiDataObject {
+
+public abstract class KpiDataObject {
 	public int id;
 	public String tableName;
 	public ArrayList<String> columnsNames = new ArrayList<String>(/*Arrays.asList("id")*/);
@@ -12,10 +11,13 @@ public class KpiDataObject {
 	}
 	
 	public int getId(){
-			throw new UnsupportedOperationException();
+			return this.id;
 		}
 	
 	public String getTableName() {
 		return this.tableName;
 	}
+	
+	public abstract void loadContents(String[] contents);
+	public abstract Object getColumnValue(String column);
 }

@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 import dataServer.database.DBConfig;
 import dataServer.database.DBUtils;
-import dataServer.database.dbobjects.KpiValues;
+import dataServer.database.dbobjects.KpiDataObject;
 
 public class DatabaseAccessObject {
 	
 	String dbName = "proasense_hella";
+//	String dbName = "dbTest";
 	DBUtils dBUtil = new DBUtils(new DBConfig("jdbc:hsqldb:file:db/", dbName, "SA", ""));
+//	DBUtils dBUtil = new DBUtils(new DBConfig("jdbc:hsqldb:file:dbTest/", dbName, "SA", ""));
 	LoggingSystem log = LoggingSystem.getLog();
 	String logFileName = "daoTestFile.log";
 		
@@ -38,7 +40,7 @@ public class DatabaseAccessObject {
 	
 	
 	public int getForeignKeyId(String tableName, String foreignKeyName, String valueName){
-		int id=0;
+		Integer id=0;
 		dBUtil.openConnection(dbName);
 		
 		String query = "SELECT \""+foreignKeyName+"\" FROM \""+tableName+"\" WHERE \"name\"='"+valueName+"';";
@@ -47,10 +49,13 @@ public class DatabaseAccessObject {
 		
 	    try {
 			for (; queryResult.next(); ) {
-				id = (int)queryResult.getObject(1);
+				id = (Integer)queryResult.getObject(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			log.saveToFile("getForeignKeyId exception: "+e );
 			e.printStackTrace();
 		}		
 		
@@ -82,7 +87,7 @@ public class DatabaseAccessObject {
 		return id;
 	}
 	
-	private ArrayList<String> prepareInsertQuery(ArrayList<KpiValues> buffer){
+	private ArrayList<String> prepareInsertQuery(ArrayList<KpiDataObject> buffer){
 		// create insert query string
 
 		String columnNames = "";
@@ -90,7 +95,7 @@ public class DatabaseAccessObject {
 		ArrayList<String> queryList = new ArrayList<>();
 		//int id = getMaxId("kpi_values");
 
-		for (KpiValues kpiValue : buffer) {
+		for (KpiDataObject kpiValue : buffer) {
 //			columnNames = "\"id\", ";
 //			values = (++id) + ", ";
 			columnNames = "";
@@ -101,14 +106,14 @@ public class DatabaseAccessObject {
 			}
 			columnNames = columnNames.substring(0, columnNames.length()-2);
 			values = values.substring(0, values.length()-2);
-			queryList.add("INSERT INTO \""+kpiValue.tableName+"Test"+"\" ("+columnNames+") VALUES ("+values+");");  
+			queryList.add("INSERT INTO \""+kpiValue.tableName+"\" ("+columnNames+") VALUES ("+values+");");  
 		}
 		
 		
 		return queryList;
 	}
 	
-	public boolean insertBatchData(ArrayList<KpiValues> buffer){
+	public boolean insertBatchData(ArrayList<KpiDataObject> buffer){
 		ArrayList<String> batchQuery = prepareInsertQuery(buffer);
 		dBUtil.openConnection(dbName);
 		dBUtil.processBatchQuery(batchQuery);

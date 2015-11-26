@@ -503,6 +503,10 @@ public class Main extends AbstractHandler
 		_log.saveToFile(msg);
     }
     
+    public void Test(){
+    	this.insertData(null, "proasense_hella", "kpi", null, null);
+    }
+    
 	public static void main(String[] args) throws SQLException
 	{
 		int port = 8085;
