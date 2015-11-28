@@ -78,5 +78,11 @@ public class KpiValues extends KpiDataObject {
 		
 		return result;
 	}
+
+	@Override
+	public Object toJSonObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

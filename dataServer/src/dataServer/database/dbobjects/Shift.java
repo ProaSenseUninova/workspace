@@ -28,4 +28,10 @@ public class Shift extends KpiDataObject {
 		}
 		return columnObj;
 	}
+
+	@Override
+	public Object toJSonObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -10,6 +10,7 @@ public enum TableValueType {
 	KPI, 
 	KPI_AGG_TYE,
 	KPI_FORMULA,
-	SENSOR
+	SENSOR,
+	NONE
 
 }

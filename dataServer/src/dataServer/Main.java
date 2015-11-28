@@ -13,36 +13,44 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Enumeration;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.hsqldb.types.TimestampData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import dataServer.database.DBConfig;
+import dataServer.database.dbobjects.Product;
+import dataServer.database.enums.SamplingInterval;
+import dataServer.database.enums.TableValueType;
 
 
 public class Main extends AbstractHandler
 {
 	static LoggingSystem _log = LoggingSystem.getLog();
 	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "", "SA", "");
+	DatabaseAccessObject dAO = new DatabaseAccessObject();
 	
-	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress)
+	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress, String queryString)
 	{
+		String[] queryParams = queryString.split("&");
 		try {
 			if(dbName.equals("func"))
 			{
-				if(tableName.equals("getGraphData"))
+				String x = tableName.substring(0,12);
+				if(tableName.contains("getGraphData"))
 				{
-					response.getWriter().println(getGraphData());
+					response.getWriter().println(getGraphData(queryParams));
 				}
-				else if(tableName.equals("getHeatMapData"))
+				else if(tableName.contains("getHeatMapData"))
 				{
 					response.getWriter().println(getHeatMapData());
-				}
-						
+				}				
 			}
 			else
 			{
@@ -53,15 +61,6 @@ public class Main extends AbstractHandler
 				{
 					writeLogMsg(tableName);
 					query=query+" WHERE \"id\"="+idReq;
-					
-//					if(tableName.equals("kpi_target"))
-//					{
-//						query=query+" WHERE \"kpi_target_id\"="+idReq;
-//					}
-//					else
-//					{
-//						query=query+" WHERE \"id\"="+idReq;
-//					}
 				}
 	
 				writeLogMsg("SQL Query: "+query);
@@ -125,8 +124,14 @@ public class Main extends AbstractHandler
 			
 	}
 	
-	public Object getGraphData()
+	public Object getGraphData(String[] requestData)
 	{
+		Integer kpiId = Integer.parseInt(getParamValueOf(requestData[0]));
+		TableValueType tableValueType = TableValueType.valueOf(getParamValueOf(requestData[1].toUpperCase()));
+		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData[4].toUpperCase()));
+		Timestamp startTime = new Timestamp(Long.parseLong(getParamValueOf(requestData[2])));
+		Timestamp endTime = new Timestamp(Long.parseLong(getParamValueOf(requestData[3])));
+		
 		try
 		{
 			JSONParser parser = new JSONParser();
@@ -137,15 +142,19 @@ public class Main extends AbstractHandler
 //									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
 //									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
 //			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
-			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
-									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
-									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
-									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
-									 + "[5.05, 11.68, 9.10, 8.58, 9.33, 2.40],"
-									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
+
+//			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
+//									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
+//									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
+//									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
+//									 + "[5.05, 11.68, 9.10, 8.58, 9.33, 2.40],"
+//									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
 			Object legend = parser.parse("[\"Global\",\"KM1\",\"KM2\",\"KM3\",\"Engel1\", \"Engel2\"]");
 			Object labels = parser.parse("[\"December\",\"January\",\"February\",\"March\",\"April\",\"May\"]");
-
+			
+			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
+			
+			
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
@@ -159,6 +168,10 @@ public class Main extends AbstractHandler
 			writeLogMsg(e.getMessage());
 			return "";
 		}
+	}
+	
+	private String getParamValueOf(String paramString){
+		return paramString.substring(paramString.indexOf("=")+1);
 	}
 	
 	public Object getHeatMapData()
@@ -286,7 +299,7 @@ public class Main extends AbstractHandler
 			JSONObject obj=(JSONObject)data;
 			String idEl=null;
 			idEl="id";
-//			idEl=tableName=="kpi_target"?"kpi_target_id":"id";
+
 			Object id = obj.get(idEl);
 			Object[] propertiesVect = obj.keySet().toArray();
 			query="UPDATE \""+tableName+"\" SET ";
@@ -337,15 +350,6 @@ public class Main extends AbstractHandler
 			{
 				obj = (JSONObject)parsedData.get(i);
 				
-//				if(tableName.equals("kpi_target"))
-//				{
-//					query = query+"\"kpi_target_id\"="+obj.get("kpi_target_id");
-//				}
-//				else
-//				{
-//					query = query+"\"id\"="+obj.get("id");
-//				}
-				
 				query = query+"\"id\"="+obj.get("id");
 
 				if(i<parsedData.size()-1)
@@ -378,7 +382,14 @@ public class Main extends AbstractHandler
 	{		
 		String method = baseRequest.getMethod();
 		String remoteAddress = baseRequest.getHeader("X-Forwarded-for")==null?baseRequest.getRemoteAddr():baseRequest.getHeader("X-Forwarded-for");
+
+		String queryString = baseRequest.getQueryString();
+		String[] queryParts = queryString.split("&");
+		Enumeration<String> requestParams = baseRequest.getParameterNames();
 		
+		String pathString = baseRequest.getPathInfo();
+//		String requestParamTP = baseRequest.getParameter("tp");
+//		String requestParams6 = baseRequest.getServletPath();
 		writeLogMsg(method+" Request from: "+ remoteAddress + " Request target: " + target);
 		writeReceivedHeadersToLog(baseRequest);
 
@@ -400,7 +411,7 @@ public class Main extends AbstractHandler
 		}
 		catch(Exception e)
 		{
-			
+			writeLogMsg(e.getMessage());
 		}
 
 		response.setContentType("application/json;charset=utf-8");
@@ -420,9 +431,9 @@ public class Main extends AbstractHandler
 					idReq = Integer.parseInt(parts[3]);
 					writeLogMsg("Id requested: "+idReq);
 				}
-				catch(Exception e)
+				catch(NumberFormatException e)
 				{
-				
+					writeLogMsg(e.getMessage());
 				}
 			}
 			
@@ -433,7 +444,7 @@ public class Main extends AbstractHandler
 			
 			if(method=="GET")
 			{
-				getData(response,dbName,tableName,idReq,remoteAddress);
+				getData(response,dbName,tableName,idReq,remoteAddress, queryString);
 			}
 			else
 			{
@@ -449,7 +460,7 @@ public class Main extends AbstractHandler
 						{
 							if(type.equals("GET"))
 							{
-								getData(response,dbName,tableName,idReq,remoteAddress);
+								getData(response,dbName,tableName,idReq,remoteAddress, queryString);
 							}
 							else if(type.equals("INSERT") && reqData!=null)
 							{

@@ -22,4 +22,10 @@ public class Sensor extends KpiDataObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Object toJSonObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

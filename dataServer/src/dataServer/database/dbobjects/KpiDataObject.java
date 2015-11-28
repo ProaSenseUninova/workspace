@@ -20,4 +20,6 @@ public abstract class KpiDataObject {
 	
 	public abstract void loadContents(String[] contents);
 	public abstract Object getColumnValue(String column);
+	public abstract Object toJSonObject();
+	
 }

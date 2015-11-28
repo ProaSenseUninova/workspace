@@ -2,8 +2,11 @@ package dataServer.database.enums;
 
 public enum SamplingInterval {
 	NONE, 
-	HOUR, 
-	DAY, 
-	WEEK, 
-	MINUTE
+	MINUTELY,
+	HOURLY, 
+	DAYLY, 
+	WEEKLY, 
+	MONTHLY,
+	YEARLY
+	
 }
