@@ -38,7 +38,12 @@ public class Main extends AbstractHandler
 	
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress, String queryString)
 	{
-		String[] queryParams = queryString.split("&");
+		String[] queryParams = new String[0];
+		
+		if(queryString!=null)
+		{
+			queryParams = queryString.split("&");
+		}
 		try {
 			if(dbName.equals("func"))
 			{
@@ -384,10 +389,7 @@ public class Main extends AbstractHandler
 		String remoteAddress = baseRequest.getHeader("X-Forwarded-for")==null?baseRequest.getRemoteAddr():baseRequest.getHeader("X-Forwarded-for");
 
 		String queryString = baseRequest.getQueryString();
-		String[] queryParts = queryString.split("&");
-		Enumeration<String> requestParams = baseRequest.getParameterNames();
-		
-		String pathString = baseRequest.getPathInfo();
+
 //		String requestParamTP = baseRequest.getParameter("tp");
 //		String requestParams6 = baseRequest.getServletPath();
 		writeLogMsg(method+" Request from: "+ remoteAddress + " Request target: " + target);

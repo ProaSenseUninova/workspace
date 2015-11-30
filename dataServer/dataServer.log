@@ -30495,3 +30495,722 @@
 {"id":2,"name":"Shift II"},
 {"id":3,"name":"Shift III"},]
 [04/11/2015 15:13:04:375] Response at: 0:0:0:0:0:0:0:1
+[30/11/2015 07:46:57:741] Server listening on port: 8085
+[30/11/2015 07:54:29:264] Server listening on port: 8085
+[30/11/2015 08:04:45:741] Error: Address already in use
+[30/11/2015 08:05:15:411] Server listening on port: 8085
+[30/11/2015 08:05:42:646] Server listening on port: 8085
+[30/11/2015 08:05:54:354] GET Request from: 127.0.0.1 Request target: /
+[30/11/2015 08:05:54:358] Header: Cache-Control max-age=0
+[30/11/2015 08:05:54:359] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:05:54:359] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:05:54:360] Header: Connection keep-alive
+[30/11/2015 08:05:54:361] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:05:54:361] Header: Host 127.0.0.1:8085
+[30/11/2015 08:05:54:362] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:05:54:363] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:05:54:463] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:05:54:464] Header: Accept */*
+[30/11/2015 08:05:54:465] Header: Connection keep-alive
+[30/11/2015 08:05:54:465] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:05:54:466] Header: Referer http://127.0.0.1:8085/
+[30/11/2015 08:05:54:466] Header: Host 127.0.0.1:8085
+[30/11/2015 08:05:54:467] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:05:54:467] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:32:785] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:32:786] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:32:786] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:32:787] Header: Connection keep-alive
+[30/11/2015 08:06:32:787] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:32:787] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:32:787] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:32:788] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:32:924] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:32:949] Header: Accept */*
+[30/11/2015 08:06:32:950] Header: Connection keep-alive
+[30/11/2015 08:06:32:950] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:32:950] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:32:950] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:32:951] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:32:951] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:41:152] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:41:152] Header: Cache-Control no-cache
+[30/11/2015 08:06:41:152] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:41:152] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:41:153] Header: Connection keep-alive
+[30/11/2015 08:06:41:153] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:41:153] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:41:153] Header: Pragma no-cache
+[30/11/2015 08:06:41:154] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:41:154] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:41:177] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:41:177] Header: Cache-Control no-cache
+[30/11/2015 08:06:41:178] Header: Accept */*
+[30/11/2015 08:06:41:178] Header: Connection keep-alive
+[30/11/2015 08:06:41:178] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:41:178] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:41:179] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:41:179] Header: Pragma no-cache
+[30/11/2015 08:06:41:179] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:41:179] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:42:730] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:42:730] Header: Cache-Control no-cache
+[30/11/2015 08:06:42:730] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:42:731] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:42:731] Header: Connection keep-alive
+[30/11/2015 08:06:42:731] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:42:732] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:42:732] Header: Pragma no-cache
+[30/11/2015 08:06:42:732] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:42:733] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:42:747] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:42:748] Header: Cache-Control no-cache
+[30/11/2015 08:06:42:748] Header: Accept */*
+[30/11/2015 08:06:42:748] Header: Connection keep-alive
+[30/11/2015 08:06:42:748] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:42:749] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:42:749] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:42:749] Header: Pragma no-cache
+[30/11/2015 08:06:42:749] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:42:750] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:224] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:224] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:225] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:225] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:225] Header: Connection keep-alive
+[30/11/2015 08:06:43:225] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:225] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:226] Header: Pragma no-cache
+[30/11/2015 08:06:43:226] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:226] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:262] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:43:263] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:263] Header: Accept */*
+[30/11/2015 08:06:43:263] Header: Connection keep-alive
+[30/11/2015 08:06:43:264] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:264] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:43:264] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:264] Header: Pragma no-cache
+[30/11/2015 08:06:43:265] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:265] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:274] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:274] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:274] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:275] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:275] Header: Connection keep-alive
+[30/11/2015 08:06:43:275] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:275] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:275] Header: Pragma no-cache
+[30/11/2015 08:06:43:276] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:276] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:347] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:348] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:348] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:348] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:349] Header: Connection keep-alive
+[30/11/2015 08:06:43:349] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:349] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:349] Header: Pragma no-cache
+[30/11/2015 08:06:43:349] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:350] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:353] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:353] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:354] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:354] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:43:354] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:354] Header: Accept */*
+[30/11/2015 08:06:43:354] Header: Connection keep-alive
+[30/11/2015 08:06:43:355] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:355] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:43:355] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:355] Header: Pragma no-cache
+[30/11/2015 08:06:43:356] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:356] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:356] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:357] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:357] Header: Connection keep-alive
+[30/11/2015 08:06:43:357] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:358] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:358] Header: Pragma no-cache
+[30/11/2015 08:06:43:358] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:358] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:359] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:359] Header: Connection keep-alive
+[30/11/2015 08:06:43:359] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:360] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:360] Header: Pragma no-cache
+[30/11/2015 08:06:43:360] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:360] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:361] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:361] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:384] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:43:385] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:385] Header: Accept */*
+[30/11/2015 08:06:43:385] Header: Connection keep-alive
+[30/11/2015 08:06:43:385] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:385] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:43:386] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:386] Header: Pragma no-cache
+[30/11/2015 08:06:43:386] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:386] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:389] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:392] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:392] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:393] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:393] Header: Connection keep-alive
+[30/11/2015 08:06:43:393] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:393] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:393] Header: Pragma no-cache
+[30/11/2015 08:06:43:394] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:394] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:410] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:43:410] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:410] Header: Accept */*
+[30/11/2015 08:06:43:410] Header: Connection keep-alive
+[30/11/2015 08:06:43:411] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:411] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:43:411] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:411] Header: Pragma no-cache
+[30/11/2015 08:06:43:411] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:412] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:433] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:433] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:434] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:434] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:434] Header: Connection keep-alive
+[30/11/2015 08:06:43:434] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:435] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:435] Header: Pragma no-cache
+[30/11/2015 08:06:43:435] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:435] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:43:971] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:06:43:971] Header: Cache-Control no-cache
+[30/11/2015 08:06:43:972] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:06:43:972] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:06:43:972] Header: Connection keep-alive
+[30/11/2015 08:06:43:973] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:43:973] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:43:973] Header: Pragma no-cache
+[30/11/2015 08:06:43:974] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:43:974] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:06:44:76] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:06:44:76] Header: Cache-Control no-cache
+[30/11/2015 08:06:44:77] Header: Accept */*
+[30/11/2015 08:06:44:77] Header: Connection keep-alive
+[30/11/2015 08:06:44:78] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:06:44:78] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:06:44:78] Header: Host 127.0.0.1:8085
+[30/11/2015 08:06:44:79] Header: Pragma no-cache
+[30/11/2015 08:06:44:79] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:06:44:80] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:38:263] GET Request from: 172.16.1.35 Request target: /
+[30/11/2015 08:07:38:263] Header: Cache-Control no-cache
+[30/11/2015 08:07:38:263] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:07:38:264] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:07:38:264] Header: Connection keep-alive
+[30/11/2015 08:07:38:264] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:38:264] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:38:264] Header: Pragma no-cache
+[30/11/2015 08:07:38:264] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:38:265] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:38:363] GET Request from: 172.16.1.35 Request target: /favicon.ico
+[30/11/2015 08:07:38:364] Header: Cache-Control no-cache
+[30/11/2015 08:07:38:364] Header: Accept */*
+[30/11/2015 08:07:38:364] Header: Connection keep-alive
+[30/11/2015 08:07:38:364] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:38:364] Header: Referer http://192.168.84.91:8085/
+[30/11/2015 08:07:38:365] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:38:365] Header: Pragma no-cache
+[30/11/2015 08:07:38:365] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:38:365] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:44:518] GET Request from: 172.16.1.35 Request target: /proasense_hella
+[30/11/2015 08:07:44:518] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:07:44:518] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:07:44:519] Header: Connection keep-alive
+[30/11/2015 08:07:44:519] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:44:519] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:44:519] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:44:519] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:44:624] GET Request from: 172.16.1.35 Request target: /favicon.ico
+[30/11/2015 08:07:44:624] Header: Accept */*
+[30/11/2015 08:07:44:624] Header: Connection keep-alive
+[30/11/2015 08:07:44:624] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:44:625] Header: Referer http://192.168.84.91:8085/proasense_hella
+[30/11/2015 08:07:44:625] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:44:626] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:44:626] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:47:687] GET Request from: 172.16.1.35 Request target: /proasense_hella/kpi
+[30/11/2015 08:07:47:687] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:07:47:687] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:07:47:688] Header: Connection keep-alive
+[30/11/2015 08:07:47:688] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:47:688] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:47:688] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:47:688] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:07:47:787] GET Request from: 172.16.1.35 Request target: /favicon.ico
+[30/11/2015 08:07:47:788] Header: Accept */*
+[30/11/2015 08:07:47:788] Header: Connection keep-alive
+[30/11/2015 08:07:47:788] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[30/11/2015 08:07:47:788] Header: Referer http://192.168.84.91:8085/proasense_hella/kpi
+[30/11/2015 08:07:47:788] Header: Host 192.168.84.91:8085
+[30/11/2015 08:07:47:789] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:07:47:789] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:21:48] Server listening on port: 8085
+[30/11/2015 08:11:35:244] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:35:246] Header: Cache-Control max-age=0
+[30/11/2015 08:11:35:246] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:35:246] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:35:247] Header: Connection keep-alive
+[30/11/2015 08:11:35:247] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:35:248] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:35:248] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:35:248] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:35:290] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:35:290] Header: Accept */*
+[30/11/2015 08:11:35:291] Header: Connection keep-alive
+[30/11/2015 08:11:35:291] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:35:292] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:35:293] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:35:294] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:35:294] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:36:135] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:36:135] Header: Cache-Control max-age=0
+[30/11/2015 08:11:36:135] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:36:136] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:36:136] Header: Connection keep-alive
+[30/11/2015 08:11:36:136] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:36:136] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:36:137] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:36:137] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:36:154] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:36:154] Header: Accept */*
+[30/11/2015 08:11:36:155] Header: Connection keep-alive
+[30/11/2015 08:11:36:155] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:36:155] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:36:155] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:36:156] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:36:156] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:282] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:37:283] Header: Cache-Control max-age=0
+[30/11/2015 08:11:37:283] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:37:283] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:37:284] Header: Connection keep-alive
+[30/11/2015 08:11:37:284] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:285] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:285] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:285] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:297] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:37:298] Header: Accept */*
+[30/11/2015 08:11:37:298] Header: Connection keep-alive
+[30/11/2015 08:11:37:298] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:298] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:37:299] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:299] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:299] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:408] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:37:408] Header: Cache-Control max-age=0
+[30/11/2015 08:11:37:409] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:37:409] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:37:409] Header: Connection keep-alive
+[30/11/2015 08:11:37:409] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:410] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:410] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:410] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:437] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:37:437] Header: Accept */*
+[30/11/2015 08:11:37:438] Header: Connection keep-alive
+[30/11/2015 08:11:37:438] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:438] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:37:439] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:439] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:439] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:584] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:37:585] Header: Cache-Control max-age=0
+[30/11/2015 08:11:37:585] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:37:585] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:37:586] Header: Connection keep-alive
+[30/11/2015 08:11:37:586] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:586] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:586] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:587] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:599] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:37:599] Header: Accept */*
+[30/11/2015 08:11:37:600] Header: Connection keep-alive
+[30/11/2015 08:11:37:600] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:600] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:37:600] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:600] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:601] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:731] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:37:732] Header: Cache-Control max-age=0
+[30/11/2015 08:11:37:732] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:37:732] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:37:732] Header: Connection keep-alive
+[30/11/2015 08:11:37:733] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:733] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:733] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:733] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:747] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:37:747] Header: Accept */*
+[30/11/2015 08:11:37:747] Header: Connection keep-alive
+[30/11/2015 08:11:37:747] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:748] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:37:748] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:748] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:748] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:838] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:37:839] Header: Cache-Control max-age=0
+[30/11/2015 08:11:37:839] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:37:839] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:37:840] Header: Connection keep-alive
+[30/11/2015 08:11:37:840] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:840] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:841] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:841] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:37:853] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:37:853] Header: Accept */*
+[30/11/2015 08:11:37:853] Header: Connection keep-alive
+[30/11/2015 08:11:37:854] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:37:854] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:37:854] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:37:855] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:37:855] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:28] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:28] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:29] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:29] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:29] Header: Connection keep-alive
+[30/11/2015 08:11:38:29] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:29] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:30] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:30] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:44] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:44] Header: Accept */*
+[30/11/2015 08:11:38:45] Header: Connection keep-alive
+[30/11/2015 08:11:38:45] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:45] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:46] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:46] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:46] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:150] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:150] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:150] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:151] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:152] Header: Connection keep-alive
+[30/11/2015 08:11:38:152] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:152] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:153] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:153] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:170] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:170] Header: Accept */*
+[30/11/2015 08:11:38:170] Header: Connection keep-alive
+[30/11/2015 08:11:38:170] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:171] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:171] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:171] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:171] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:243] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:243] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:243] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:244] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:258] Header: Connection keep-alive
+[30/11/2015 08:11:38:259] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:259] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:259] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:259] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:271] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:271] Header: Accept */*
+[30/11/2015 08:11:38:271] Header: Connection keep-alive
+[30/11/2015 08:11:38:272] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:272] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:272] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:272] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:272] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:448] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:448] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:448] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:449] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:449] Header: Connection keep-alive
+[30/11/2015 08:11:38:449] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:449] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:449] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:449] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:463] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:463] Header: Accept */*
+[30/11/2015 08:11:38:463] Header: Connection keep-alive
+[30/11/2015 08:11:38:463] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:463] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:464] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:464] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:464] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:649] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:650] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:650] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:650] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:650] Header: Connection keep-alive
+[30/11/2015 08:11:38:650] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:651] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:651] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:651] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:667] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:668] Header: Accept */*
+[30/11/2015 08:11:38:668] Header: Connection keep-alive
+[30/11/2015 08:11:38:668] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:668] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:668] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:668] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:669] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:743] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:744] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:744] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:744] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:744] Header: Connection keep-alive
+[30/11/2015 08:11:38:744] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:745] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:745] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:745] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:770] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:771] Header: Accept */*
+[30/11/2015 08:11:38:771] Header: Connection keep-alive
+[30/11/2015 08:11:38:771] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:771] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:772] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:772] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:772] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:863] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:863] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:863] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:863] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:864] Header: Connection keep-alive
+[30/11/2015 08:11:38:864] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:864] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:864] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:864] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:887] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:38:887] Header: Accept */*
+[30/11/2015 08:11:38:887] Header: Connection keep-alive
+[30/11/2015 08:11:38:887] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:888] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:38:888] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:888] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:888] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:38:986] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:38:986] Header: Cache-Control max-age=0
+[30/11/2015 08:11:38:986] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:38:986] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:38:987] Header: Connection keep-alive
+[30/11/2015 08:11:38:987] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:38:987] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:38:987] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:38:987] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:4] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:5] Header: Accept */*
+[30/11/2015 08:11:39:5] Header: Connection keep-alive
+[30/11/2015 08:11:39:5] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:5] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:5] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:5] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:6] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:196] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:39:197] Header: Cache-Control max-age=0
+[30/11/2015 08:11:39:197] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:39:198] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:39:198] Header: Connection keep-alive
+[30/11/2015 08:11:39:198] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:198] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:199] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:199] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:223] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:223] Header: Accept */*
+[30/11/2015 08:11:39:224] Header: Connection keep-alive
+[30/11/2015 08:11:39:224] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:224] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:225] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:225] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:225] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:307] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:39:307] Header: Cache-Control max-age=0
+[30/11/2015 08:11:39:307] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:39:307] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:39:308] Header: Connection keep-alive
+[30/11/2015 08:11:39:308] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:308] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:308] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:308] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:322] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:322] Header: Accept */*
+[30/11/2015 08:11:39:322] Header: Connection keep-alive
+[30/11/2015 08:11:39:323] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:323] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:323] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:323] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:323] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:698] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:39:698] Header: Cache-Control max-age=0
+[30/11/2015 08:11:39:698] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:39:698] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:699] Header: Accept */*
+[30/11/2015 08:11:39:699] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:39:699] Header: Connection keep-alive
+[30/11/2015 08:11:39:699] Header: Connection keep-alive
+[30/11/2015 08:11:39:699] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:700] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:700] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:700] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:700] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:700] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:700] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:701] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:701] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:763] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:763] Header: Accept */*
+[30/11/2015 08:11:39:764] Header: Connection keep-alive
+[30/11/2015 08:11:39:764] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:764] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:764] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:764] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:764] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:772] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:39:772] Header: Cache-Control max-age=0
+[30/11/2015 08:11:39:772] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:39:772] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:39:772] Header: Connection keep-alive
+[30/11/2015 08:11:39:773] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:773] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:773] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:773] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:39:794] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:39:794] Header: Accept */*
+[30/11/2015 08:11:39:795] Header: Connection keep-alive
+[30/11/2015 08:11:39:795] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:39:795] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:39:795] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:39:795] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:39:796] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:30] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:40:31] Header: Cache-Control max-age=0
+[30/11/2015 08:11:40:31] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:40:31] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:40:31] Header: Connection keep-alive
+[30/11/2015 08:11:40:32] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:32] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:32] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:32] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:45] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:40:46] Header: Accept */*
+[30/11/2015 08:11:40:46] Header: Connection keep-alive
+[30/11/2015 08:11:40:46] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:46] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:40:46] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:46] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:47] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:293] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:40:293] Header: Cache-Control max-age=0
+[30/11/2015 08:11:40:294] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:40:294] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:40:294] Header: Accept */*
+[30/11/2015 08:11:40:294] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:40:295] Header: Connection keep-alive
+[30/11/2015 08:11:40:295] Header: Connection keep-alive
+[30/11/2015 08:11:40:295] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:295] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:295] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:40:295] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:296] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:296] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:296] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:296] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:296] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:348] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:40:348] Header: Accept */*
+[30/11/2015 08:11:40:348] Header: Connection keep-alive
+[30/11/2015 08:11:40:348] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:349] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:40:349] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:349] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:349] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:426] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:11:40:426] Header: Cache-Control max-age=0
+[30/11/2015 08:11:40:426] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:11:40:426] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:11:40:426] Header: Connection keep-alive
+[30/11/2015 08:11:40:427] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:427] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:427] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:427] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:11:40:441] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:11:40:530] Header: Accept */*
+[30/11/2015 08:11:40:531] Header: Connection keep-alive
+[30/11/2015 08:11:40:531] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:11:40:531] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:11:40:531] Header: Host 127.0.0.1:8085
+[30/11/2015 08:11:40:532] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:11:40:532] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:14:13:966] Server listening on port: 8085
+[30/11/2015 08:14:21:529] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:14:21:534] Header: Cache-Control max-age=0
+[30/11/2015 08:14:21:536] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:14:21:537] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:14:21:539] Header: Connection keep-alive
+[30/11/2015 08:14:21:541] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:14:21:542] Header: Host 127.0.0.1:8085
+[30/11/2015 08:14:21:544] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:14:21:546] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:14:51:563] Server listening on port: 8085
+[30/11/2015 08:14:57:957] GET Request from: 127.0.0.1 Request target: /proasense_hella/kpi
+[30/11/2015 08:14:57:960] Header: Cache-Control max-age=0
+[30/11/2015 08:14:57:961] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:14:57:962] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:14:57:963] Header: Connection keep-alive
+[30/11/2015 08:14:57:964] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:14:57:964] Header: Host 127.0.0.1:8085
+[30/11/2015 08:14:57:965] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:14:57:966] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:14:59:370] SQL Query: SELECT * FROM "kpi"
+[30/11/2015 08:14:59:394] [{"id":1,"parent_id":null,"name":"Count","description":"Amount of product created. This can be defined per machine, employee, shit or the whole plant.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"simple","aggregation":6},{"id":2,"parent_id":1,"name":"Good parts","description":"Amount of products produced with acceptable quality.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"simple","aggregation":6},{"id":3,"parent_id":1,"name":"Scrapped parts","description":"Amount of products produced that are rejected.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"simple","aggregation":6},{"id":4,"parent_id":null,"name":"Scrap rate","description":"Relation of product inappropriate to sell.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"composed","aggregation":1},{"id":5,"parent_id":null,"name":"Availability","description":"Percentage of scheduled time that the operation is available to operate.","sampling_rate":1,"sampling_interval":"hour","context_product":false,"context_machine":true,"context_mould":false,"context_shift":true,"calculation_type":"composed","aggregation":1},{"id":6,"parent_id":null,"name":"Performance","description":"Speed at which the operation runs as a percentage of its designed speed.","sampling_rate":1,"sampling_interval":"hour","context_product":false,"context_machine":true,"context_mould":false,"context_shift":true,"calculation_type":"composed","aggregation":1},{"id":7,"parent_id":null,"name":"Quality","description":"Good units produced as a percentage of the total units started.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"composed","aggregation":1},{"id":8,"parent_id":null,"name":"OEE","description":"Evaluates how effectively an operation is used. Quantifies how well a manufacturing unit performs relative to its designed capacity, during the periods when it is scheduled to run.","sampling_rate":1,"sampling_interval":"hour","context_product":true,"context_machine":true,"context_mould":true,"context_shift":true,"calculation_type":"composed","aggregation":1}]
+[30/11/2015 08:14:59:395] Response at: 127.0.0.1
+[30/11/2015 08:15:00:28] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:15:00:29] Header: Cache-Control no-cache
+[30/11/2015 08:15:00:30] Header: Accept */*
+[30/11/2015 08:15:00:30] Header: Connection keep-alive
+[30/11/2015 08:15:00:31] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:15:00:32] Header: Referer http://127.0.0.1:8085/proasense_hella/kpi
+[30/11/2015 08:15:00:32] Header: Host 127.0.0.1:8085
+[30/11/2015 08:15:00:33] Header: Pragma no-cache
+[30/11/2015 08:15:00:34] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:15:00:34] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:15:16:923] GET Request from: 127.0.0.1 Request target: /func/getGraphData
+[30/11/2015 08:15:16:924] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:15:16:925] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:15:16:925] Header: Connection keep-alive
+[30/11/2015 08:15:16:926] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:15:16:927] Header: Host 127.0.0.1:8085
+[30/11/2015 08:15:16:927] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:15:16:928] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:15:16:930] Error: 0
+[30/11/2015 08:15:16:956] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:15:16:956] Header: Accept */*
+[30/11/2015 08:15:16:957] Header: Connection keep-alive
+[30/11/2015 08:15:16:957] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:15:16:958] Header: Referer http://127.0.0.1:8085/func/getGraphData
+[30/11/2015 08:15:16:958] Header: Host 127.0.0.1:8085
+[30/11/2015 08:15:16:958] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:15:16:959] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:15:19:345] GET Request from: 127.0.0.1 Request target: /func/getGraphData
+[30/11/2015 08:15:19:346] Header: Cache-Control max-age=0
+[30/11/2015 08:15:19:347] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[30/11/2015 08:15:19:347] Header: Upgrade-Insecure-Requests 1
+[30/11/2015 08:15:19:348] Header: Connection keep-alive
+[30/11/2015 08:15:19:348] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:15:19:349] Header: Host 127.0.0.1:8085
+[30/11/2015 08:15:19:349] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:15:19:350] Header: Accept-Language en-US,en;q=0.8
+[30/11/2015 08:15:19:351] Error: 0
+[30/11/2015 08:15:19:379] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[30/11/2015 08:15:19:379] Header: Accept */*
+[30/11/2015 08:15:19:380] Header: Connection keep-alive
+[30/11/2015 08:15:19:381] Header: User-Agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454.101 Chrome/45.0.2454.101 Safari/537.36
+[30/11/2015 08:15:19:381] Header: Referer http://127.0.0.1:8085/func/getGraphData
+[30/11/2015 08:15:19:382] Header: Host 127.0.0.1:8085
+[30/11/2015 08:15:19:382] Header: Accept-Encoding gzip, deflate, sdch
+[30/11/2015 08:15:19:382] Header: Accept-Language en-US,en;q=0.8

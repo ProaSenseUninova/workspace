@@ -1,0 +1,40 @@
+#!/bin/bash
+#DataServer
+#
+
+start()
+{
+	/bin/bash /usr/local/bin/dataServerStart.sh
+}
+
+stop()
+{
+	/bin/bash /usr/local/bin/dataServerStop.sh
+}
+
+status()
+{
+	pid=`pidof dataServer`
+	if [ "$pid" ];then
+		echo "Data Server running with pid: $pid"
+	else
+		echo "Data Server stopped"
+	fi
+}
+case $1 in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart)
+		stop
+		sleep 1
+		start
+	;;
+	status)
+		status
+	;;
+esac
+exit 0
