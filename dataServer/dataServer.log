@@ -31214,3 +31214,37 @@
 [30/11/2015 08:15:19:382] Header: Host 127.0.0.1:8085
 [30/11/2015 08:15:19:382] Header: Accept-Encoding gzip, deflate, sdch
 [30/11/2015 08:15:19:382] Header: Accept-Language en-US,en;q=0.8
+[02/12/2015 10:26:03:196] Server listening on port: 8085
+[02/12/2015 10:30:47:551] Server listening on port: 8085
+[02/12/2015 10:31:03:559] GET Request from: 127.0.0.1 Request target: /
+[02/12/2015 10:31:03:596] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[02/12/2015 10:31:03:602] Header: Upgrade-Insecure-Requests 1
+[02/12/2015 10:31:03:607] Header: Connection keep-alive
+[02/12/2015 10:31:03:612] Header: User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[02/12/2015 10:31:03:618] Header: Host 127.0.0.1:8085
+[02/12/2015 10:31:03:623] Header: Accept-Encoding gzip, deflate, sdch
+[02/12/2015 10:31:03:628] Header: Accept-Language en-US,en;q=0.8,pt;q=0.6,pt-PT;q=0.4
+[02/12/2015 10:31:03:720] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[02/12/2015 10:31:03:728] Header: Accept */*
+[02/12/2015 10:31:03:736] Header: Connection keep-alive
+[02/12/2015 10:31:03:740] Header: User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[02/12/2015 10:31:03:745] Header: Referer http://127.0.0.1:8085/
+[02/12/2015 10:31:03:750] Header: Host 127.0.0.1:8085
+[02/12/2015 10:31:03:755] Header: Accept-Encoding gzip, deflate, sdch
+[02/12/2015 10:31:03:759] Header: Accept-Language en-US,en;q=0.8,pt;q=0.6,pt-PT;q=0.4
+[02/12/2015 10:31:10:307] GET Request from: 127.0.0.1 Request target: /func/getRealTimeKpis
+[02/12/2015 10:31:10:317] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+[02/12/2015 10:31:10:324] Header: Upgrade-Insecure-Requests 1
+[02/12/2015 10:31:10:331] Header: Connection keep-alive
+[02/12/2015 10:31:10:336] Header: User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[02/12/2015 10:31:10:343] Header: Host 127.0.0.1:8085
+[02/12/2015 10:31:10:348] Header: Accept-Encoding gzip, deflate, sdch
+[02/12/2015 10:31:10:353] Header: Accept-Language en-US,en;q=0.8,pt;q=0.6,pt-PT;q=0.4
+[02/12/2015 10:31:10:389] GET Request from: 127.0.0.1 Request target: /favicon.ico
+[02/12/2015 10:31:10:397] Header: Accept */*
+[02/12/2015 10:31:10:411] Header: Connection keep-alive
+[02/12/2015 10:31:10:419] Header: User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36
+[02/12/2015 10:31:10:426] Header: Referer http://127.0.0.1:8085/func/getRealTimeKpis
+[02/12/2015 10:31:10:432] Header: Host 127.0.0.1:8085
+[02/12/2015 10:31:10:436] Header: Accept-Encoding gzip, deflate, sdch
+[02/12/2015 10:31:10:442] Header: Accept-Language en-US,en;q=0.8,pt;q=0.6,pt-PT;q=0.4

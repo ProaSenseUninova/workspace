@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +18,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
@@ -35,16 +39,25 @@ public class Main extends AbstractHandler
 	static LoggingSystem _log = LoggingSystem.getLog();
 	DBConfig dbConfig = new DBConfig("jdbc:hsqldb:file:db/", "", "SA", "");
 	DatabaseAccessObject dAO = new DatabaseAccessObject();
-	
+	public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException {
+	    Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+	    String[] pairs = query.split("&");
+	    for (String pair : pairs) {
+	        int idx = pair.indexOf("=");
+	        query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+	    }
+	    return query_pairs;
+	}
 	public void getData(HttpServletResponse response,String dbName,String tableName,Integer idReq,String remoteAddress, String queryString)
 	{
-		String[] queryParams = new String[0];
-		
-		if(queryString!=null)
-		{
-			queryParams = queryString.split("&");
-		}
+
 		try {
+			Map<String, String> queryParams = new LinkedHashMap<String, String>();
+			
+			if(queryString!=null)
+			{
+				queryParams = splitQuery(queryString);
+			}
 			if(dbName.equals("func"))
 			{
 				String x = tableName.substring(0,12);
@@ -55,7 +68,11 @@ public class Main extends AbstractHandler
 				else if(tableName.contains("getHeatMapData"))
 				{
 					response.getWriter().println(getHeatMapData());
-				}				
+				}		
+				else if(tableName.contains("getRealTimeKpis"))
+				{
+					response.getWriter().println(getRealTimeKpis(queryParams));
+				}
 			}
 			else
 			{
@@ -129,13 +146,13 @@ public class Main extends AbstractHandler
 			
 	}
 	
-	public Object getGraphData(String[] requestData)
+	public Object getGraphData(Map<String,String>requestData)
 	{
-		Integer kpiId = Integer.parseInt(getParamValueOf(requestData[0]));
-		TableValueType tableValueType = TableValueType.valueOf(getParamValueOf(requestData[1].toUpperCase()));
-		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData[4].toUpperCase()));
-		Timestamp startTime = new Timestamp(Long.parseLong(getParamValueOf(requestData[2])));
-		Timestamp endTime = new Timestamp(Long.parseLong(getParamValueOf(requestData[3])));
+		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+		TableValueType tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
+		Timestamp startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
+		Timestamp endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
 		
 		try
 		{
@@ -174,7 +191,22 @@ public class Main extends AbstractHandler
 			return "";
 		}
 	}
-	
+	public Object getRealTimeKpis(Map<String,String> requestData)
+	{
+		try
+		{
+			JSONObject obj = new JSONObject();
+			obj.put("oee", 87);
+			obj.put("totalUnits", 1259);
+			obj.put("scrapRate", 11);
+			return obj;
+		}
+		catch(Exception e)
+		{
+			writeLogMsg(e.getMessage());
+			return new JSONObject();
+		}
+	}
 	private String getParamValueOf(String paramString){
 		return paramString.substring(paramString.indexOf("=")+1);
 	}
