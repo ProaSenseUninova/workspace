@@ -31248,3 +31248,104 @@
 [02/12/2015 10:31:10:432] Header: Host 127.0.0.1:8085
 [02/12/2015 10:31:10:436] Header: Accept-Encoding gzip, deflate, sdch
 [02/12/2015 10:31:10:442] Header: Accept-Language en-US,en;q=0.8,pt;q=0.6,pt-PT;q=0.4
+[04/12/2015 12:14:14:670] Server listening on port: 8085
+[04/12/2015 12:14:57:584] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:14:57:587] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:14:57:588] Header: Connection keep-alive
+[04/12/2015 12:14:57:589] Header: Host localhost:8085
+[04/12/2015 12:14:57:590] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:14:57:592] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:14:57:593] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:14:57:633] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:14:58:687] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:14:58:706] null
+[04/12/2015 12:15:16:832] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:15:16:833] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:15:16:835] Header: Connection keep-alive
+[04/12/2015 12:15:16:837] Header: Host localhost:8085
+[04/12/2015 12:15:16:840] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:15:16:842] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:15:16:844] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:15:16:864] null
+[04/12/2015 12:15:52:185] Server listening on port: 8085
+[04/12/2015 12:22:20:131] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:22:20:135] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:22:20:137] Header: Connection keep-alive
+[04/12/2015 12:22:20:138] Header: Host localhost:8085
+[04/12/2015 12:22:20:141] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:22:20:143] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:22:20:144] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:22:20:195] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:22:21:344] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:22:21:361] null
+[04/12/2015 12:23:27:891] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:23:27:894] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:23:27:898] Header: Connection keep-alive
+[04/12/2015 12:23:27:901] Header: Host localhost:8085
+[04/12/2015 12:23:27:905] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:23:27:909] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:23:27:913] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:27:14:787] null
+[04/12/2015 12:31:17:517] Server listening on port: 8085
+[04/12/2015 12:31:21:876] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:31:21:879] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:31:21:880] Header: Connection keep-alive
+[04/12/2015 12:31:21:881] Header: Host localhost:8085
+[04/12/2015 12:31:21:883] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:31:21:884] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:31:21:886] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:32:48:940] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:17:326] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:46:290] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:46:292] Connection opened
+[04/12/2015 12:35:53:405] <Machine:KM-1000 (1)><Good Parts:282039><Scrapped Parts:17569><ScrapRate:5.8600>
+[04/12/2015 12:35:53:406] <Machine:KM-1000 (2)><Good Parts:261792><Scrapped Parts:14780><ScrapRate:5.3400>
+[04/12/2015 12:35:53:407] <Machine:KM-1000 (3)><Good Parts:259776><Scrapped Parts:7930><ScrapRate:2.9600>
+[04/12/2015 12:35:53:408] <Machine:ENGEL-1750 (5)><Good Parts:268256><Scrapped Parts:23643><ScrapRate:8.0900>
+[04/12/2015 12:35:53:408] <Machine:ENGEL-1750 (4)><Good Parts:150666><Scrapped Parts:12888><ScrapRate:7.8700>
+[04/12/2015 12:35:53:409] Connection closed
+[04/12/2015 12:35:53:418] <Requesting connection #2 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:53:419] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:53:421] <Requesting connection #3 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:35:53:422] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:36:21:334] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:36:28:975] Server listening on port: 8085
+[04/12/2015 12:36:35:733] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 12:36:35:736] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 12:36:35:738] Header: Connection keep-alive
+[04/12/2015 12:36:35:739] Header: Host localhost:8085
+[04/12/2015 12:36:35:740] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 12:36:35:741] Header: Accept-Encoding gzip, deflate
+[04/12/2015 12:36:35:742] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 12:36:48:68] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 12:37:12:415] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:35:02:159] Server listening on port: 8085
+[04/12/2015 13:35:06:295] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 13:35:06:298] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 13:35:06:300] Header: Connection keep-alive
+[04/12/2015 13:35:06:300] Header: Host localhost:8085
+[04/12/2015 13:35:06:301] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 13:35:06:302] Header: Accept-Encoding gzip, deflate
+[04/12/2015 13:35:06:303] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 13:35:57:193] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:36:22:289] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:39:01:300] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 13:39:01:301] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 13:39:01:302] Header: Connection keep-alive
+[04/12/2015 13:39:01:302] Header: Host localhost:8085
+[04/12/2015 13:39:01:303] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 13:39:01:304] Header: Accept-Encoding gzip, deflate
+[04/12/2015 13:39:01:305] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 13:39:11:626] <Requesting connection #2 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:39:11:630] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:40:29:343] Server listening on port: 8085
+[04/12/2015 13:40:39:277] Server listening on port: 8085
+[04/12/2015 13:40:43:698] GET Request from: 0:0:0:0:0:0:0:1 Request target: /func/getGraphData
+[04/12/2015 13:40:43:701] Header: User-Agent Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0
+[04/12/2015 13:40:43:703] Header: Connection keep-alive
+[04/12/2015 13:40:43:704] Header: Host localhost:8085
+[04/12/2015 13:40:43:706] Header: Accept-Language pt-PT,en-GB;q=0.8,en;q=0.6,pt;q=0.4,en-US;q=0.2
+[04/12/2015 13:40:43:707] Header: Accept-Encoding gzip, deflate
+[04/12/2015 13:40:43:708] Header: Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[04/12/2015 13:40:43:749] <Requesting connection #1 to (loading to memory)> url:jdbc:hsqldb:file:db/proasense_hella
+[04/12/2015 13:41:04:340] <Connection retrieved> url:jdbc:hsqldb:file:db/proasense_hella

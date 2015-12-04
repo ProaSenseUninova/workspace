@@ -1,5 +1,6 @@
 package dataServer.database.dbobjects;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
@@ -19,23 +20,25 @@ public class ResultTable {
 	String typeTableName = "";
 	String partsTableName = "";
 	String scrappedPartsTableName = "";
+	Timestamp startTime = null;
+	Timestamp endTime = null;
+	public Integer columnQty = 0;
 	
 	public ArrayList<ResultTableElement> resultsRows = new ArrayList<ResultTableElement>();
-			
+	
+	public ResultTable(){
+		
+	}
+	
 	public ResultTable(TableValueType tVT, SamplingInterval sI) {
 		tableVT = tVT;
-		configureTable(tVT);
 		samplingInterval = sI;
+		configureTable(tVT, sI);
 		
-		partsTableName = tVT.toString().toLowerCase()
-				+ "_parts_"+getSamplingIntervalAlias(sI);
-		
-		scrappedPartsTableName = tVT.toString().toLowerCase()
-				+ "_scrapped_parts_"+getSamplingIntervalAlias(sI);
 	}
 	
 	
-	private void configureTable(TableValueType tableVT){
+	private void configureTable(TableValueType tableVT, SamplingInterval sI){
 		switch (tableVT){
 		case MACHINE: partsTableAlias = "mp";
 					  scrappedPartsTableAlias = "ms";
@@ -47,10 +50,16 @@ public class ResultTable {
 					  typeTableAlias = "PRD";
 					  typeTableName = "PRODUCT";
 					  break;
-		case MOULD:
-			break;
-		case NONE:
-			break;
+		case MOULD: partsTableAlias = "mldp";
+		  			scrappedPartsTableAlias = "mlds";
+		  			typeTableAlias = "MLD";
+		  			typeTableName = "MOULD";
+		  			break;
+		case NONE: partsTableAlias = "glbp";
+				   scrappedPartsTableAlias = "glbs";
+				   typeTableAlias = "GLB";
+				   typeTableName = "GLOBAL";
+				   break;
 		case KPI:
 			break;
 		case KPI_AGG_TYE:
@@ -68,6 +77,12 @@ public class ResultTable {
 		default:
 			break;
 		}
+		partsTableName = typeTableName.toLowerCase()
+				+ "_parts_"+getSamplingIntervalAlias(sI);
+		
+		scrappedPartsTableName = typeTableName.toString().toLowerCase()
+				+ "_scrapped_parts_"+getSamplingIntervalAlias(sI);
+
 	}
 	
 	private String getSamplingIntervalAlias(SamplingInterval sI){
@@ -81,7 +96,7 @@ public class ResultTable {
 			break;
 		case MONTHLY: result = "per_month";
 			break;
-		case NONE: result = "";
+		case NONE: result = "global";
 			break;
 		case WEEKLY: result = "per_week";
 			break;
@@ -95,22 +110,52 @@ public class ResultTable {
 		return result;
 	}
 	
-	public String getResultTableQueryString(Integer id){
+	public String getResultTableQueryString(Integer id, Timestamp startTime, Timestamp endTime){
 		String query = "SELECT "+partsTableAlias+"."+typeTableName+", "
-				+ ""+partsTableAlias+".HOUR"+typeTableAlias+", "
-				+ ""+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
-				+ "FROM \""+partsTableName+"\" "+partsTableAlias+" "
-				+ "INNER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
-				+ "ON "+partsTableAlias+"."+typeTableName+"="+scrappedPartsTableAlias+"."+typeTableName+" "
-				+ "	AND "+partsTableAlias+".HOUR"+typeTableAlias+"="+scrappedPartsTableAlias+".HOUR"+typeTableAlias+" " 
-				+ "	AND "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
-				+ "INNER JOIN \""+typeTableName.toLowerCase()+"\" "+typeTableAlias.toLowerCase()+" "
-				+ "ON "+partsTableAlias+"."+typeTableName+" = "+typeTableAlias.toLowerCase()+".\"name\" "
-				+ "WHERE "+typeTableAlias.toLowerCase()+".\"id\" = '"+id+"' "
-				+ "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".HOUR"+typeTableAlias+";";
+					 + ""+partsTableAlias+".HOUR"+typeTableAlias+", "
+					 + ""+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
+					 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
+  					 + "INNER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
+					 + "ON "+partsTableAlias+"."+typeTableName+"="+scrappedPartsTableAlias+"."+typeTableName+" "
+					 + "	AND "+partsTableAlias+".HOUR"+typeTableAlias+"="+scrappedPartsTableAlias+".HOUR"+typeTableAlias+" " 
+					 + "	AND "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
+					 + "INNER JOIN \""+typeTableName.toLowerCase()+"\" "+typeTableAlias.toLowerCase()+" "
+					 + "ON "+partsTableAlias+"."+typeTableName+" = "+typeTableAlias.toLowerCase()+".\"name\" "
+					 + "WHERE "+typeTableAlias.toLowerCase()+".\"id\" = '"+id+"' "
+					 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".HOUR"+typeTableAlias+";";
 		  
 		return query;
 	}
+	
+	public String getResultTableQueryString(Timestamp startTime, Timestamp endTime){
+		String query = "SELECT "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "
+				+ ""+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
+				 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
+				 + "INNER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
+				 + "ON "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
+				 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
+		/*
+		SELECT glbp.DATEGLB, glbp.COUNTGLB, glbs.SCRGLB, (glbs.SCRGLB/glbp.COUNTGLB) as ScrapRate 
+		FROM "global_parts_per_day" glbp 
+		INNER JOIN "global_scrapped_parts_per_day" glbs 
+		ON  glbp.DATEGLB=glbs.DATEGLB 
+		ORDER BY glbp.DATEGLB;
+		*/
+		
+		return query;
+	}
+	
+	public String getLastNDays(Integer days) {
+		String query = "SELECT COUNT(*) as CountGlb, CAST(kv.\"timestamp\" as DATE) as dateA "
+					 + "FROM  \"kpi_values\" kv "
+					 + "WHERE CAST(kv.\"timestamp\" AS DATE) > dateadd('day', -" + days + ", (SELECT MAX(kv.\"timestamp\") FROM \"kpi_values\" kv) ) "
+					 + "GROUP BY dateA "
+					 + "ORDER BY dateA";
+		 
+		return query;
+	}
+	
+
 	
 	private String getTableValueType(){
 		return tableVT.toString();

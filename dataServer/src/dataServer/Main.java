@@ -149,10 +149,22 @@ public class Main extends AbstractHandler
 	public Object getGraphData(Map<String,String>requestData)
 	{
 		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
-		TableValueType tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+		
+		
+		TableValueType tableValueType = null;
+		
+		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
+			tableValueType = TableValueType.NONE;
+		}
+		else
+		{
+			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+		}
+
 		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
 		Timestamp startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
 		Timestamp endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+		
 		
 		try
 		{

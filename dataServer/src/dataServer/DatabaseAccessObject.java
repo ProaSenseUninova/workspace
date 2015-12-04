@@ -143,7 +143,7 @@ public class DatabaseAccessObject {
 			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
 				String tmp = "[";
 				for (ResultTable rt : tempResultTable){
-					tmp += rt.toJSonObject(6)+",";
+					tmp += rt.toJSonObject(rt.columnQty)+",";
 				}
 				tmp = tmp.substring(0, tmp.length()-1);
 				tmp +="]";
@@ -166,16 +166,16 @@ public class DatabaseAccessObject {
 	}
 	
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-		Integer numTableElements = getMaxId(type.toString().toLowerCase());
+		Integer numTableElements = (type.equals(TableValueType.NONE))?1:getMaxId(type.toString().toLowerCase());
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
 		for (int k = 1; k<=numTableElements;k++)
-			alrt.add(getOneScrapRate(type, granularity, startTime, endTime, k));
+			alrt.add((type.equals(TableValueType.NONE))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
 		return alrt;
 	}
 	
 	public ResultTable getOneScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime, Integer id){
 		ResultTable resultTable = new ResultTable(type, granularity);
-		String query = resultTable.getResultTableQueryString(id);
+		String query = resultTable.getResultTableQueryString(id, startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
 		
@@ -184,7 +184,42 @@ public class DatabaseAccessObject {
         try {
         	ResultSetMetaData rMD = queryResult.getMetaData();
         	Integer colN = rMD.getColumnCount();
+        	resultTable.columnQty = colN;
 
+        	ResultTableElement resultRow = new ResultTableElement(type, colN);
+        	
+        	for (; queryResult.next(); ) {
+
+				for (int i = 0; i<rMD.getColumnCount(); i++) {
+					resultRow.columnsNames.add(rMD.getColumnName(i+1));
+					resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
+				}
+//				resultRow.toJSonObject();
+
+				resultTable.resultsRows.add(resultRow);
+				resultRow = new ResultTableElement(type, colN);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		dBUtil.closeConnection();		
+		return resultTable;
+	}
+	
+	public ResultTable getOneScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
+		ResultTable resultTable = new ResultTable(type, granularity);
+		String query = resultTable.getResultTableQueryString(startTime, endTime);
+		
+		dBUtil.openConnection(dbName);
+		
+		ResultSet queryResult = dBUtil.processQuery(query);
+		
+        try {
+        	ResultSetMetaData rMD = queryResult.getMetaData();
+        	Integer colN = rMD.getColumnCount();
+        	resultTable.columnQty = colN;
+        	
         	ResultTableElement resultRow = new ResultTableElement(type, colN);
         	
         	for (; queryResult.next(); ) {
@@ -209,6 +244,40 @@ public class DatabaseAccessObject {
 	public void getScrapRateMachineDaily(Timestamp from, Timestamp to){}
 	public void getScrapRateProductDaily(Timestamp from, Timestamp to){}
 	
+	public ResultTable getLast30DaysScrapRate(){
+		ResultTable resultTable = new ResultTable();
+		String query = resultTable.getLastNDays(30);
+		
+		dBUtil.openConnection(dbName);
+		
+		ResultSet queryResult = dBUtil.processQuery(query);
+		
+        try {
+        	ResultSetMetaData rMD = queryResult.getMetaData();
+        	Integer colN = rMD.getColumnCount();
+
+        	ResultTableElement resultRow = new ResultTableElement(TableValueType.NONE, colN);
+        	
+        	resultRow.columnsNames = new ArrayList<String>();
+        	resultRow.columnValues = new String[colN];
+        	
+        	for (; queryResult.next(); ) {
+
+				for (int i = 0; i<rMD.getColumnCount(); i++) {
+					resultRow.columnsNames.add(rMD.getColumnName(i+1));
+					resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
+				}
+
+				resultTable.resultsRows.add(resultRow);
+				resultRow = new ResultTableElement(TableValueType.NONE, colN);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		dBUtil.closeConnection();		
+		return resultTable;
+	}
 	
 	public static void main(String[] args) {
 		DatabaseAccessObject dAO = new DatabaseAccessObject();
