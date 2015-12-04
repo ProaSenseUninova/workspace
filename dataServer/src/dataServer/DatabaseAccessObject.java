@@ -166,10 +166,10 @@ public class DatabaseAccessObject {
 	}
 	
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-		Integer numTableElements = (type.equals(TableValueType.NONE))?1:getMaxId(type.toString().toLowerCase());
+		Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
 		for (int k = 1; k<=numTableElements;k++)
-			alrt.add((type.equals(TableValueType.NONE))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
+			alrt.add((type.equals(TableValueType.GLOBAL))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
 		return alrt;
 	}
 	

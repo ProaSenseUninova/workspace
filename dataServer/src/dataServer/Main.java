@@ -149,6 +149,8 @@ public class Main extends AbstractHandler
 	public Object getGraphData(Map<String,String>requestData)
 	{
 		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+		Timestamp startTime = new Timestamp(0);
+		Timestamp endTime = new Timestamp(0);
 		
 		
 		TableValueType tableValueType = null;
@@ -162,8 +164,13 @@ public class Main extends AbstractHandler
 		}
 
 		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
-		Timestamp startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
-		Timestamp endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+		String startTimeStr = requestData.get("startTime");
+		String endTimeStr = requestData.get("endTime");
+		
+		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
+			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
+			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+		}
 		
 		
 		try

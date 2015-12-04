@@ -4,7 +4,7 @@ public enum SamplingInterval {
 	NONE, 
 	MINUTELY,
 	HOURLY, 
-	DAYLY, 
+	DAILY, 
 	WEEKLY, 
 	MONTHLY,
 	YEARLY

@@ -55,7 +55,7 @@ public class ResultTable {
 		  			typeTableAlias = "MLD";
 		  			typeTableName = "MOULD";
 		  			break;
-		case NONE: partsTableAlias = "glbp";
+		case GLOBAL: partsTableAlias = "glbp";
 				   scrappedPartsTableAlias = "glbs";
 				   typeTableAlias = "GLB";
 				   typeTableName = "GLOBAL";
@@ -88,7 +88,7 @@ public class ResultTable {
 	private String getSamplingIntervalAlias(SamplingInterval sI){
 		String result = "";
 		switch (sI){
-		case DAYLY: result = "per_day";
+		case DAILY: result = "per_day";
 			break;
 		case HOURLY: result = "per_hour";
 			break;
