@@ -149,8 +149,8 @@ public class Main extends AbstractHandler
 	public Object getGraphData(Map<String,String>requestData)
 	{
 		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
-		Timestamp startTime = new Timestamp(0);
-		Timestamp endTime = new Timestamp(0);
+		Timestamp startTime = null;
+		Timestamp endTime = null;
 		
 		
 		TableValueType tableValueType = null;
@@ -190,7 +190,8 @@ public class Main extends AbstractHandler
 //									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
 //									 + "[5.05, 11.68, 9.10, 8.58, 9.33, 2.40],"
 //									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
-			Object legend = parser.parse("[\"Global\",\"KM1\",\"KM2\",\"KM3\",\"Engel1\", \"Engel2\"]");
+//			Object legend = parser.parse("[\"Global\"]");
+			Object legend = parser.parse("[\"KM1\",\"KM2\",\"KM3\",\"Engel1\", \"Engel2\"]");
 			Object labels = parser.parse("[\"December\",\"January\",\"February\",\"March\",\"April\",\"May\"]");
 			
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);

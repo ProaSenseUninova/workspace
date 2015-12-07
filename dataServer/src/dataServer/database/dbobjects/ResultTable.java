@@ -111,37 +111,43 @@ public class ResultTable {
 	}
 	
 	public String getResultTableQueryString(Integer id, Timestamp startTime, Timestamp endTime){
+		String time;
+		if ( (startTime == null) && (endTime == null) ){
+			time = "";
+		}
+		else
+			time = "AND "+partsTableAlias+".DATE"+typeTableAlias+" BETWEEN TIMESTAMP('"+startTime+"') AND TIMESTAMP('"+endTime+"')";
+		
 		String query = "SELECT "+partsTableAlias+"."+typeTableName+", "
-					 + ""+partsTableAlias+".HOUR"+typeTableAlias+", "
-					 + ""+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
-					 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
-  					 + "INNER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
-					 + "ON "+partsTableAlias+"."+typeTableName+"="+scrappedPartsTableAlias+"."+typeTableName+" "
-					 + "	AND "+partsTableAlias+".HOUR"+typeTableAlias+"="+scrappedPartsTableAlias+".HOUR"+typeTableAlias+" " 
-					 + "	AND "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
-					 + "INNER JOIN \""+typeTableName.toLowerCase()+"\" "+typeTableAlias.toLowerCase()+" "
-					 + "ON "+partsTableAlias+"."+typeTableName+" = "+typeTableAlias.toLowerCase()+".\"name\" "
-					 + "WHERE "+typeTableAlias.toLowerCase()+".\"id\" = '"+id+"' "
-					 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".HOUR"+typeTableAlias+";";
-		  
+				 + ""+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
+				 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
+				 + "LEFT OUTER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
+				 + "ON "+partsTableAlias+"."+typeTableName+"="+scrappedPartsTableAlias+"."+typeTableName+" "
+				 + " AND "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
+				 + "INNER JOIN \""+typeTableName.toLowerCase()+"\" "+typeTableAlias.toLowerCase()+" "
+				 + "ON "+partsTableAlias+"."+typeTableName+" = "+typeTableAlias.toLowerCase()+".\"name\" "
+				 + "WHERE "+typeTableAlias.toLowerCase()+".\"id\" = '"+id+"' "
+				 + time 
+				 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
+
 		return query;
 	}
 	
 	public String getResultTableQueryString(Timestamp startTime, Timestamp endTime){
+		String time;
+		if ( (startTime == null) && (endTime == null) ){
+			time = "";
+		}
+		else
+			time = "WHERE "+partsTableAlias+".DATE"+typeTableAlias+" BETWEEN TIMESTAMP('"+startTime+"') AND TIMESTAMP('"+endTime+"') ";
+
 		String query = "SELECT "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "
 				+ ""+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
 				 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
-				 + "INNER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
+				 + "LEFT OUTER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
 				 + "ON "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
+				 + time 
 				 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
-		/*
-		SELECT glbp.DATEGLB, glbp.COUNTGLB, glbs.SCRGLB, (glbs.SCRGLB/glbp.COUNTGLB) as ScrapRate 
-		FROM "global_parts_per_day" glbp 
-		INNER JOIN "global_scrapped_parts_per_day" glbs 
-		ON  glbp.DATEGLB=glbs.DATEGLB 
-		ORDER BY glbp.DATEGLB;
-		*/
-		
 		return query;
 	}
 	

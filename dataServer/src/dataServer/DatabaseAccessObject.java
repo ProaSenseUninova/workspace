@@ -79,8 +79,10 @@ public class DatabaseAccessObject {
 		dBUtil.openConnection(dbName);
 		
 		String query = "SELECT MAX(\"id\") FROM \""+tableName+"\";";
+		log.saveToFile("<Processing query>"+query);
 		
 		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
 		
         try {
         	if (queryResult.next()) {
@@ -148,10 +150,12 @@ public class DatabaseAccessObject {
 				tmp = tmp.substring(0, tmp.length()-1);
 				tmp +="]";
 				try {
+					log.saveToFile("<Values>"+tmp+"</Values>");
 					result = parser.parse(tmp);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					log.saveToFile("<Error parsing results kpiId="+kpiId+" contextualInformation="+type.toString()
+							+" granularity="+granularity+" startTime="+startTime+" endTime="+endTime+"> "+e.getMessage()+" </Error parsing results>");
 				}
 				
 				break;
@@ -178,8 +182,10 @@ public class DatabaseAccessObject {
 		String query = resultTable.getResultTableQueryString(id, startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
+		log.saveToFile("<Processing query>"+query);
 		
 		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
 		
         try {
         	ResultSetMetaData rMD = queryResult.getMetaData();
@@ -192,7 +198,10 @@ public class DatabaseAccessObject {
 
 				for (int i = 0; i<rMD.getColumnCount(); i++) {
 					resultRow.columnsNames.add(rMD.getColumnName(i+1));
-					resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
+					if (queryResult.getObject(i+1)==null)
+						resultRow.columnValues[i] = "null";
+					else
+						resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
 				}
 //				resultRow.toJSonObject();
 
@@ -212,8 +221,10 @@ public class DatabaseAccessObject {
 		String query = resultTable.getResultTableQueryString(startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
+		log.saveToFile("Processing query:"+query);
 		
 		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
 		
         try {
         	ResultSetMetaData rMD = queryResult.getMetaData();
@@ -280,64 +291,64 @@ public class DatabaseAccessObject {
 	}
 	
 	public static void main(String[] args) {
-		DatabaseAccessObject dAO = new DatabaseAccessObject();
-		LoggingSystem log = LoggingSystem.getLog();
-		String logFileName = "daoTestFile.log";
-		
-
-		String query2 = "SELECT Count(*) cnt1, mc.\"name\" Machine1 "
-					 + "FROM \"kpi_values\" kv "
-					 + "LEFT OUTER JOIN \"product\" mc ON kv.\"product_id\" = mc.\"id\" "
-					 + "WHERE kv.\"good_part\" = 'false' "
-					 + "AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
-					 + "AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-05-03' "		  
-					 + "GROUP BY Machine1; ";
-		
-		String ScrapRateTotalPerMachine = "SELECT ((BadParts.cnt2)/(BadParts.cnt2+GoodParts.cnt1))*100 ScrapRate, GoodParts.cnt1, GoodParts.Machine1, BadParts.cnt2 "
-					  +"FROM (SELECT Count(*) cnt1, mc.\"name\" Machine1, kv.\"good_part\" Part1 "
-							+"FROM \"kpi_values\" kv, \"machine\" mc "
-							+"WHERE kv.\"machine_id\" = mc.\"id\"  "
-							+"AND kv.\"good_part\" = 'true' "
-							+"AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
-							+"AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-04-05' "
-							+"GROUP BY Machine1, Part1) AS GoodParts "
-					  +"INNER JOIN (SELECT Count(*) cnt2, mc.\"name\" Machine2, kv.\"good_part\" Part2 FROM \"kpi_values\" kv, \"machine\" mc "
-							 	  +"WHERE kv.\"machine_id\" = mc.\"id\"  "
-								  +"AND kv.\"good_part\" = 'false' "
-								  +"AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
-								  +"AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-04-05' "
-								  +"GROUP BY Machine2, Part2) AS BadParts "
-					  +"ON Machine1 = Machine2; ";
-		
-		
-//		Integer id=0;
-		dAO.dBUtil.openConnection(dAO.dbName);
-		log.saveToFile("Connection opened", logFileName);
-		
-		ResultSet queryResult = dAO.dBUtil.processQuery(ScrapRateTotalPerMachine);
-		
-        try {
-        	for (;queryResult.next();)
-        	{
-        		String s = "";
-	        	s += "<Machine:"+queryResult.getObject(3).toString()+">";
-	        	s += "<Good Parts:"+queryResult.getObject(2).toString()+">";
-	        	s += "<Scrapped Parts:"+queryResult.getObject(4).toString()+">";
-	        	s += "<ScrapRate:"+queryResult.getObject(1).toString()+">";
-
-	        	log.saveToFile(s, logFileName);
-        	}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-        
-        log.saveToFile("Connection closed", logFileName);
-        dAO.dBUtil.closeConnection();
-		
-		
-		
-		
-		dAO.getNameId("machine", "KM1");
-		dAO.getNameId("kpi", "");
+//		DatabaseAccessObject dAO = new DatabaseAccessObject();
+//		LoggingSystem log = LoggingSystem.getLog();
+//		String logFileName = "daoTestFile.log";
+//		
+//
+//		String query2 = "SELECT Count(*) cnt1, mc.\"name\" Machine1 "
+//					 + "FROM \"kpi_values\" kv "
+//					 + "LEFT OUTER JOIN \"product\" mc ON kv.\"product_id\" = mc.\"id\" "
+//					 + "WHERE kv.\"good_part\" = 'false' "
+//					 + "AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
+//					 + "AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-05-03' "		  
+//					 + "GROUP BY Machine1; ";
+//		
+//		String ScrapRateTotalPerMachine = "SELECT ((BadParts.cnt2)/(BadParts.cnt2+GoodParts.cnt1))*100 ScrapRate, GoodParts.cnt1, GoodParts.Machine1, BadParts.cnt2 "
+//					  +"FROM (SELECT Count(*) cnt1, mc.\"name\" Machine1, kv.\"good_part\" Part1 "
+//							+"FROM \"kpi_values\" kv, \"machine\" mc "
+//							+"WHERE kv.\"machine_id\" = mc.\"id\"  "
+//							+"AND kv.\"good_part\" = 'true' "
+//							+"AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
+//							+"AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-04-05' "
+//							+"GROUP BY Machine1, Part1) AS GoodParts "
+//					  +"INNER JOIN (SELECT Count(*) cnt2, mc.\"name\" Machine2, kv.\"good_part\" Part2 FROM \"kpi_values\" kv, \"machine\" mc "
+//							 	  +"WHERE kv.\"machine_id\" = mc.\"id\"  "
+//								  +"AND kv.\"good_part\" = 'false' "
+//								  +"AND CAST(kv.\"timestamp\" AS TIME) BETWEEN TIME'00:00:00' AND TIME'23:59:59' "
+//								  +"AND CAST(kv.\"timestamp\" AS DATE) BETWEEN DATE'2014-10-01' AND DATE'2015-04-05' "
+//								  +"GROUP BY Machine2, Part2) AS BadParts "
+//					  +"ON Machine1 = Machine2; ";
+//		
+//		
+////		Integer id=0;
+//		dAO.dBUtil.openConnection(dAO.dbName);
+//		log.saveToFile("Connection opened", logFileName);
+//		
+//		ResultSet queryResult = dAO.dBUtil.processQuery(ScrapRateTotalPerMachine);
+//		
+//        try {
+//        	for (;queryResult.next();)
+//        	{
+//        		String s = "";
+//	        	s += "<Machine:"+queryResult.getObject(3).toString()+">";
+//	        	s += "<Good Parts:"+queryResult.getObject(2).toString()+">";
+//	        	s += "<Scrapped Parts:"+queryResult.getObject(4).toString()+">";
+//	        	s += "<ScrapRate:"+queryResult.getObject(1).toString()+">";
+//
+//	        	log.saveToFile(s, logFileName);
+//        	}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//        
+//        log.saveToFile("Connection closed", logFileName);
+//        dAO.dBUtil.closeConnection();
+//		
+//		
+//		
+//		
+//		dAO.getNameId("machine", "KM1");
+//		dAO.getNameId("kpi", "");
 	}
 }
