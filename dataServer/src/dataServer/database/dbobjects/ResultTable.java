@@ -128,7 +128,7 @@ public class ResultTable {
 				 + "ON "+partsTableAlias+"."+typeTableName+" = "+typeTableAlias.toLowerCase()+".\"name\" "
 				 + "WHERE "+typeTableAlias.toLowerCase()+".\"id\" = '"+id+"' "
 				 + time 
-				 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
+				 + " ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
 
 		return query;
 	}
@@ -141,13 +141,13 @@ public class ResultTable {
 		else
 			time = "WHERE "+partsTableAlias+".DATE"+typeTableAlias+" BETWEEN TIMESTAMP('"+startTime+"') AND TIMESTAMP('"+endTime+"') ";
 
-		String query = "SELECT "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "
+		String query = "SELECT 'Global' as Global, "+partsTableAlias+".DATE"+typeTableAlias+", "+partsTableAlias+".COUNT"+typeTableAlias+", "
 				+ ""+scrappedPartsTableAlias+".SCR"+typeTableAlias+", ("+scrappedPartsTableAlias+".SCR"+typeTableAlias+"/"+partsTableAlias+".COUNT"+typeTableAlias+") as ScrapRate "
 				 + "FROM \""+partsTableName+"\" "+partsTableAlias+" "
 				 + "LEFT OUTER JOIN \""+scrappedPartsTableName+"\" "+scrappedPartsTableAlias+" "
 				 + "ON "+partsTableAlias+".DATE"+typeTableAlias+"="+scrappedPartsTableAlias+".DATE"+typeTableAlias+" "
 				 + time 
-				 + "ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
+				 + " ORDER BY "+partsTableAlias+".DATE"+typeTableAlias+";";
 		return query;
 	}
 	

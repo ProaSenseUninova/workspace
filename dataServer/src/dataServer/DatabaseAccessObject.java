@@ -170,10 +170,19 @@ public class DatabaseAccessObject {
 	}
 	
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-		Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
+//		Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
-		for (int k = 1; k<=numTableElements;k++)
-			alrt.add((type.equals(TableValueType.GLOBAL))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
+//		for (int k = 1; k<=numTableElements;k++)
+//			alrt.add((type.equals(TableValueType.GLOBAL))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
+		
+		
+		if (!type.equals(TableValueType.GLOBAL)){
+			Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
+			for (int k = 1; k<=numTableElements;k++)
+				alrt.add(getOneScrapRate(type, granularity, startTime, endTime, k));
+		}
+		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
+			
 		return alrt;
 	}
 	
@@ -203,7 +212,6 @@ public class DatabaseAccessObject {
 					else
 						resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
 				}
-//				resultRow.toJSonObject();
 
 				resultTable.resultsRows.add(resultRow);
 				resultRow = new ResultTableElement(type, colN);
@@ -221,7 +229,7 @@ public class DatabaseAccessObject {
 		String query = resultTable.getResultTableQueryString(startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
-		log.saveToFile("Processing query:"+query);
+		log.saveToFile("<Processing query>"+query);
 		
 		ResultSet queryResult = dBUtil.processQuery(query);
 		log.saveToFile("<Query processed>");
@@ -237,9 +245,11 @@ public class DatabaseAccessObject {
 
 				for (int i = 0; i<rMD.getColumnCount(); i++) {
 					resultRow.columnsNames.add(rMD.getColumnName(i+1));
-					resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
+					if (queryResult.getObject(i+1)==null)
+						resultRow.columnValues[i] = "null";
+					else
+						resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
 				}
-//				resultRow.toJSonObject();
 
 				resultTable.resultsRows.add(resultRow);
 				resultRow = new ResultTableElement(type, colN);
