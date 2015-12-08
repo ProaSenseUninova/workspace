@@ -27,6 +27,8 @@ public class DatabaseAccessObject {
 //	DBUtils dBUtil = new DBUtils(new DBConfig("jdbc:hsqldb:file:dbTest/", dbName, "SA", ""));
 	LoggingSystem log = LoggingSystem.getLog();
 	String logFileName = "daoTestFile.log";
+	
+	private Object legends;
 		
 	public int getNameId(String tableName, String valueName){
 		int id=0;
@@ -143,15 +145,21 @@ public class DatabaseAccessObject {
 			case 2:break;
 			case 3:break;
 			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
-				String tmp = "[";
+				String tmpData = "[";
+				String legend = "[";
 				for (ResultTable rt : tempResultTable){
-					tmp += rt.toJSonObject(rt.columnQty)+",";
+					tmpData += rt.toJSonObject(rt.columnQty)+",";
+					legend += rt.toJsonObjectLegend()+",";
 				}
-				tmp = tmp.substring(0, tmp.length()-1);
-				tmp +="]";
+				tmpData = tmpData.substring(0, tmpData.length()-1);
+				tmpData +="]";
+				legend = legend.substring(0, legend.length()-1);
+				legend +="]";
 				try {
-					log.saveToFile("<Values>"+tmp+"</Values>");
-					result = parser.parse(tmp);
+					log.saveToFile("<Values>"+tmpData+"</Values>");
+					log.saveToFile("<Values>"+legend+"</Values>");
+					result = parser.parse(tmpData);
+					legends = parser.parse(legend);
 				} catch (ParseException e) {
 					e.printStackTrace();
 					log.saveToFile("<Error parsing results kpiId="+kpiId+" contextualInformation="+type.toString()
@@ -298,6 +306,10 @@ public class DatabaseAccessObject {
 		
 		dBUtil.closeConnection();		
 		return resultTable;
+	}
+	
+	public Object getLegends() {
+		return legends;
 	}
 	
 	public static void main(String[] args) {

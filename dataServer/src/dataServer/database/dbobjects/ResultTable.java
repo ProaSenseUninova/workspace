@@ -203,5 +203,21 @@ public class ResultTable {
 		return jsonObject;
 	}
 	
+	public Object toJsonObjectLegend(){
+		Object jsonObject = new JSONObject();
+		JSONParser parser = new JSONParser();
+		
+		String tempLegend = "[\"" + resultsRows.get(1).toJSonObject(1) + "\"]";
+		
+		try {
+			jsonObject = parser.parse(tempLegend);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject;
+	}
+	
 	
 }
