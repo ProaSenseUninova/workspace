@@ -157,7 +157,7 @@ public class DatabaseAccessObject {
 				legend +="]";
 				try {
 					log.saveToFile("<Values>"+tmpData+"</Values>");
-					log.saveToFile("<Values>"+legend+"</Values>");
+					log.saveToFile("<Legends>"+legend+"</Legends>");
 					result = parser.parse(tmpData);
 					legends = parser.parse(legend);
 				} catch (ParseException e) {
@@ -178,12 +178,7 @@ public class DatabaseAccessObject {
 	}
 	
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-//		Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
-//		for (int k = 1; k<=numTableElements;k++)
-//			alrt.add((type.equals(TableValueType.GLOBAL))?getOneScrapRate(type, granularity, startTime, endTime):getOneScrapRate(type, granularity, startTime, endTime, k));
-		
-		
 		if (!type.equals(TableValueType.GLOBAL)){
 			Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
 			for (int k = 1; k<=numTableElements;k++)

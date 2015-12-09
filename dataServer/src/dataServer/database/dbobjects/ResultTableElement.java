@@ -42,7 +42,9 @@ public class ResultTableElement extends KpiDataObject {
 		for (int i = 0; i<columnValues.length;i++) {
 			temp += "\""+columnValues[i]+"\",";
 		}
+		
 		temp = temp.substring(0, temp.length()-1);
+
 		temp +="]";
 		try {
 			jsonObject = parser.parse(temp);
@@ -57,9 +59,10 @@ public class ResultTableElement extends KpiDataObject {
 		Object jsonObject = new JSONObject();
 		JSONParser parser = new JSONParser();
 		String temp = "";
+		
 		temp += "\""+columnValues[column-1]+"\"";
-//		temp = temp.substring(0, temp.length()-1);
-		temp +="";
+			
+		
 		try {
 			jsonObject = parser.parse(temp);
 		} catch (ParseException e) {

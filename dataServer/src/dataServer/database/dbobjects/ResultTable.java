@@ -192,7 +192,9 @@ public class ResultTable {
 		for (int i = 0; i<resultsRows.size();i++) {
 			temp += resultsRows.get(i).toJSonObject(column)+",";
 		}
+		
 		temp = temp.substring(0, temp.length()-1);
+
 		temp +="]";
 		try {
 			jsonObject = parser.parse(temp);
@@ -206,8 +208,9 @@ public class ResultTable {
 	public Object toJsonObjectLegend(){
 		Object jsonObject = new JSONObject();
 		JSONParser parser = new JSONParser();
+		String tempLegend = "[null]";
 		
-		String tempLegend = "[\"" + resultsRows.get(1).toJSonObject(1) + "\"]";
+		tempLegend = "[\"" + resultsRows.get(0).toJSonObject(1) + "\"]";
 		
 		try {
 			jsonObject = parser.parse(tempLegend);
