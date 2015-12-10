@@ -32,6 +32,7 @@ public class DatabaseAccessObject {
 	String logFileName = "daoTestFile.log";
 	
 	private Object _legends;
+	private Object _graphTitle;
 	private Integer _valueRefQty;
 	private boolean _valueRefQtyFlag = false;
 	private String[] _refRows;
@@ -146,6 +147,8 @@ public class DatabaseAccessObject {
 	public Object getData(Integer kpiId, TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		Object data = null;
 		JSONParser parser = new JSONParser();
+		
+		setTitle(kpiId);
 		switch (kpiId){
 			case 1:break;
 			case 2:break;
@@ -184,7 +187,8 @@ public class DatabaseAccessObject {
 		}
 		return data;
 	}
-	
+
+
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
 		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
@@ -332,6 +336,47 @@ public class DatabaseAccessObject {
 		
 	}
 	
+	public Object getTitle() {
+		JSONParser parser = new JSONParser();
+		Object result = null;
+
+		try {
+			String tmp = "[";
+			tmp += "\""+_graphTitle+"\",";
+			tmp = tmp.substring(0, tmp.length()-1);
+			tmp += "]";
+			result = parser.parse(tmp);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	
+	private void setTitle(Integer kpiId) {
+		dBUtil.openConnection(dbName);
+		
+		String query = "SELECT \"name\" FROM \"kpi\" WHERE \"kpi\".\"id\"='"+kpiId+"';";
+		log.saveToFile("<Processing query>"+query);
+		
+		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
+		
+        try {
+        	if (queryResult.next()) {
+	        	_graphTitle = (String)queryResult.getObject(1);
+
+	        	if (_graphTitle  == null) {
+	        		_graphTitle = "";
+	            }
+        	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		dBUtil.closeConnection();
+	}
+	
+	
 	public static void main(String[] args) {
 //		DatabaseAccessObject dAO = new DatabaseAccessObject();
 //		LoggingSystem log = LoggingSystem.getLog();
@@ -393,4 +438,6 @@ public class DatabaseAccessObject {
 //		dAO.getNameId("machine", "KM1");
 //		dAO.getNameId("kpi", "");
 	}
+
+
 }

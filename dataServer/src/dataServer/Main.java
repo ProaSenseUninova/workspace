@@ -24,6 +24,7 @@ import java.util.Map;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jetty.util.log.Log;
 import org.hsqldb.types.TimestampData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -57,6 +58,7 @@ public class Main extends AbstractHandler
 			if(queryString!=null)
 			{
 				queryParams = splitQuery(queryString);
+				_log.saveToFile("<request>"+queryString+"</request>");
 			}
 			if(dbName.equals("func"))
 			{
@@ -182,17 +184,15 @@ public class Main extends AbstractHandler
 //									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
 //									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
 //									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
-//			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
 
-//			Object labels = parser.parse("[\"January\",\"February\",\"March\",\"April\",\"May\"]");
-			
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
 			Object labels = dAO.getXLabels(samplingInterval);
+			Object title = dAO.getTitle();
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
-			obj.put("title", "Availability");
+			obj.put("title", title);
 			obj.put("subTitle", "Source: use case data");
 			
 			return obj;
