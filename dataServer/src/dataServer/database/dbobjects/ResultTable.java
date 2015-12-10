@@ -2,6 +2,7 @@ package dataServer.database.dbobjects;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -185,19 +186,27 @@ public class ResultTable {
 		return jsonObject;
 	}
 	
-	public Object toJSonObject(Integer column){
+	public Object toJSonObject(Integer column, String[] rowsRefStr){
 		Object jsonObject = new JSONObject();
 		JSONParser parser = new JSONParser();
-		String temp = "[";
+		String[] tempStr = new String[rowsRefStr.length];
+		Integer refPos = -1; 
+		String titleValue = "";
+		
 		for (int i = 0; i<resultsRows.size();i++) {
-			temp += resultsRows.get(i).toJSonObject(column)+",";
+			titleValue = resultsRows.get(i).columnValues[1];
+			for (int j=0;j<rowsRefStr.length;j++){
+				if (titleValue.equals(rowsRefStr[j])){
+					refPos=j;
+					break;
+				}
+			}
+			tempStr[refPos] = resultsRows.get(i).toJSonObject(column).toString();
 		}
 		
-		temp = temp.substring(0, temp.length()-1);
-
-		temp +="]";
+		
 		try {
-			jsonObject = parser.parse(temp);
+			jsonObject = parser.parse(Arrays.toString(tempStr));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -210,10 +219,10 @@ public class ResultTable {
 		JSONParser parser = new JSONParser();
 		String tempLegend = "[null]";
 		
-		tempLegend = "[\"" + resultsRows.get(0).toJSonObject(1) + "\"]";
+		tempLegend = "\"" + resultsRows.get(0).toJSonObject(1) + "\"";
 		
 		try {
-			jsonObject = parser.parse(tempLegend);
+			jsonObject = "\"" +parser.parse(tempLegend)+"\"";
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

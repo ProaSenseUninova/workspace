@@ -28,7 +28,10 @@ public class DatabaseAccessObject {
 	LoggingSystem log = LoggingSystem.getLog();
 	String logFileName = "daoTestFile.log";
 	
-	private Object legends;
+	private Object _legends;
+	private Integer _valueRefQty;
+	private boolean _valueRefQtyFlag = false;
+	private String[] _refRows;
 		
 	public int getNameId(String tableName, String valueName){
 		int id=0;
@@ -138,7 +141,7 @@ public class DatabaseAccessObject {
 	
 	
 	public Object getData(Integer kpiId, TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-		Object result = null;
+		Object data = null;
 		JSONParser parser = new JSONParser();
 		switch (kpiId){
 			case 1:break;
@@ -148,7 +151,7 @@ public class DatabaseAccessObject {
 				String tmpData = "[";
 				String legend = "[";
 				for (ResultTable rt : tempResultTable){
-					tmpData += rt.toJSonObject(rt.columnQty)+",";
+					tmpData += rt.toJSonObject(rt.columnQty, _refRows)+",";
 					legend += rt.toJsonObjectLegend()+",";
 				}
 				tmpData = tmpData.substring(0, tmpData.length()-1);
@@ -158,8 +161,8 @@ public class DatabaseAccessObject {
 				try {
 					log.saveToFile("<Values>"+tmpData+"</Values>");
 					log.saveToFile("<Legends>"+legend+"</Legends>");
-					result = parser.parse(tmpData);
-					legends = parser.parse(legend);
+					data = parser.parse(tmpData);
+					_legends = parser.parse(legend);
 				} catch (ParseException e) {
 					e.printStackTrace();
 					log.saveToFile("<Error parsing results kpiId="+kpiId+" contextualInformation="+type.toString()
@@ -174,17 +177,17 @@ public class DatabaseAccessObject {
 			
 			
 		}
-		return result;
+		return data;
 	}
 	
 	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
+		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
 		if (!type.equals(TableValueType.GLOBAL)){
-			Integer numTableElements = (type.equals(TableValueType.GLOBAL))?1:getMaxId(type.toString().toLowerCase());
+			Integer numTableElements = getMaxId(type.toString().toLowerCase());
 			for (int k = 1; k<=numTableElements;k++)
 				alrt.add(getOneScrapRate(type, granularity, startTime, endTime, k));
 		}
-		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
 			
 		return alrt;
 	}
@@ -257,16 +260,30 @@ public class DatabaseAccessObject {
 				resultTable.resultsRows.add(resultRow);
 				resultRow = new ResultTableElement(type, colN);
 			}
+        	
+        	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
 		
-		dBUtil.closeConnection();		
+		dBUtil.closeConnection();
+		
+		initializeValueRefQtyVector(resultTable.resultsRows);
+		
 		return resultTable;
 	}
 	
-	public void getScrapRateMachineDaily(Timestamp from, Timestamp to){}
-	public void getScrapRateProductDaily(Timestamp from, Timestamp to){}
+	
+	private void initializeValueRefQtyVector(ArrayList<ResultTableElement> rows){
+		_valueRefQty = rows.size();
+    	_refRows = new String[_valueRefQty];
+    	
+    	for(int j=0;j<_valueRefQty;j++){
+    		_refRows[j] = rows.get(j).columnValues[1];
+    	}
+    	
+    	_valueRefQtyFlag = true;
+	}
 	
 	public ResultTable getLast30DaysScrapRate(){
 		ResultTable resultTable = new ResultTable();
@@ -304,7 +321,7 @@ public class DatabaseAccessObject {
 	}
 	
 	public Object getLegends() {
-		return legends;
+		return _legends;
 	}
 	
 	public static void main(String[] args) {
