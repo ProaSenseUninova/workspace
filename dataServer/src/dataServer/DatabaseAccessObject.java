@@ -5,7 +5,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.hsqldb.result.ResultMetaData;
 import org.json.simple.parser.JSONParser;
@@ -148,20 +151,24 @@ public class DatabaseAccessObject {
 			case 2:break;
 			case 3:break;
 			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
-				String tmpData = "[";
+//				String tmpData = "[";
 				String legend = "[";
+				String[] tempDataStr = new String[tempResultTable.size()];
+				Integer pos = -1;
 				for (ResultTable rt : tempResultTable){
-					tmpData += rt.toJSonObject(rt.columnQty, _refRows)+",";
+//					tmpData += rt.toJSonObject(rt.columnQty, _refRows)+",";
 					legend += rt.toJsonObjectLegend()+",";
+					tempDataStr[++pos] = rt.toJSonObject(rt.columnQty, _refRows).toString();
 				}
-				tmpData = tmpData.substring(0, tmpData.length()-1);
-				tmpData +="]";
+//				tmpData = tmpData.substring(0, tmpData.length()-1);
+//				tmpData +="]";
 				legend = legend.substring(0, legend.length()-1);
 				legend +="]";
 				try {
-					log.saveToFile("<Values>"+tmpData+"</Values>");
+					log.saveToFile("<Values>"+Arrays.toString(tempDataStr)+"</Values>");
 					log.saveToFile("<Legends>"+legend+"</Legends>");
-					data = parser.parse(tmpData);
+//					data = parser.parse(tmpData);
+					data = parser.parse(Arrays.toString(tempDataStr));
 					_legends = parser.parse(legend);
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -174,8 +181,6 @@ public class DatabaseAccessObject {
 			case 6:break;
 			case 7:break;
 			default: break;
-			
-			
 		}
 		return data;
 	}
@@ -285,43 +290,46 @@ public class DatabaseAccessObject {
     	_valueRefQtyFlag = true;
 	}
 	
-	public ResultTable getLast30DaysScrapRate(){
-		ResultTable resultTable = new ResultTable();
-		String query = resultTable.getLastNDays(30);
-		
-		dBUtil.openConnection(dbName);
-		
-		ResultSet queryResult = dBUtil.processQuery(query);
-		
-        try {
-        	ResultSetMetaData rMD = queryResult.getMetaData();
-        	Integer colN = rMD.getColumnCount();
-
-        	ResultTableElement resultRow = new ResultTableElement(TableValueType.NONE, colN);
-        	
-        	resultRow.columnsNames = new ArrayList<String>();
-        	resultRow.columnValues = new String[colN];
-        	
-        	for (; queryResult.next(); ) {
-
-				for (int i = 0; i<rMD.getColumnCount(); i++) {
-					resultRow.columnsNames.add(rMD.getColumnName(i+1));
-					resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
-				}
-
-				resultTable.resultsRows.add(resultRow);
-				resultRow = new ResultTableElement(TableValueType.NONE, colN);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		
-		dBUtil.closeConnection();		
-		return resultTable;
-	}
-	
 	public Object getLegends() {
 		return _legends;
+	}
+
+	public Object getXLabels(SamplingInterval sI){
+		JSONParser parser = new JSONParser();
+		Object result = null;
+
+		try {
+			String tmp = "[";
+			for (int i=0;i<_refRows.length;i++){
+				tmp += "\""+getLabelName(sI, _refRows[i])+"\",";
+			}
+			tmp = tmp.substring(0, tmp.length()-1);
+			tmp += "]";
+			result = parser.parse(tmp);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private String getLabelName(SamplingInterval sI, String element){
+		String labelName ="";
+		switch (sI) {
+		case HOURLY: labelName = (new SimpleDateFormat("HH dd MMM")).format(Timestamp.valueOf(element));
+			break;
+		case DAILY: labelName = (new SimpleDateFormat("yyyy-MM-dd")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
+			break;
+		case MONTHLY: labelName = (new SimpleDateFormat("MMM yyyy")).format(Timestamp.valueOf(element)); // "April" 
+			break;
+		case WEEKLY: labelName = (new SimpleDateFormat("ww yyyy")).format(Timestamp.valueOf(element));
+			break;
+		case YEARLY: labelName = (new SimpleDateFormat("yyyy")).format(Timestamp.valueOf(element));
+			break;
+		default:
+			break;
+		}
+		return labelName;
+		
 	}
 	
 	public static void main(String[] args) {

@@ -184,11 +184,11 @@ public class Main extends AbstractHandler
 //									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
 //			Object legend = parser.parse("[\"Global\",\"Machine 1\",\"Machine 2\",\"Machine 3\",\"Machine 4\"]");
 
-			Object labels = parser.parse("[\"January\",\"February\",\"March\",\"April\",\"May\"]");
+//			Object labels = parser.parse("[\"January\",\"February\",\"March\",\"April\",\"May\"]");
 			
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
-			
+			Object labels = dAO.getXLabels(samplingInterval);
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
