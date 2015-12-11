@@ -160,8 +160,10 @@ public class DatabaseAccessObject {
 				Integer pos = -1;
 				for (ResultTable rt : tempResultTable){
 //					tmpData += rt.toJSonObject(rt.columnQty, _refRows)+",";
-					legend += rt.toJsonObjectLegend()+",";
-					tempDataStr[++pos] = rt.toJSonObject(rt.columnQty, _refRows).toString();
+					if (rt.resultsRows.size() != 0) {
+						legend += rt.toJsonObjectLegend()+",";
+						tempDataStr[++pos] = rt.toJSonObject(rt.columnQty, _refRows).toString();
+					}
 				}
 //				tmpData = tmpData.substring(0, tmpData.length()-1);
 //				tmpData +="]";
@@ -319,13 +321,13 @@ public class DatabaseAccessObject {
 	private String getLabelName(SamplingInterval sI, String element){
 		String labelName ="";
 		switch (sI) {
-		case HOURLY: labelName = (new SimpleDateFormat("HH dd MMM")).format(Timestamp.valueOf(element));
+		case HOURLY: labelName = (new SimpleDateFormat("HH'h' dd MMM")).format(Timestamp.valueOf(element));
 			break;
-		case DAILY: labelName = (new SimpleDateFormat("yyyy-MM-dd")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
+		case DAILY: labelName = (new SimpleDateFormat("dd MMM''yy")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
 			break;
-		case MONTHLY: labelName = (new SimpleDateFormat("MMM yyyy")).format(Timestamp.valueOf(element)); // "April" 
+		case MONTHLY: labelName = (new SimpleDateFormat("'W'MMM''yy")).format(Timestamp.valueOf(element)); // "April" 
 			break;
-		case WEEKLY: labelName = (new SimpleDateFormat("ww yyyy")).format(Timestamp.valueOf(element));
+		case WEEKLY: labelName = (new SimpleDateFormat("ww''yy")).format(Timestamp.valueOf(element));
 			break;
 		case YEARLY: labelName = (new SimpleDateFormat("yyyy")).format(Timestamp.valueOf(element));
 			break;
@@ -351,7 +353,39 @@ public class DatabaseAccessObject {
 		}
 		return result;
 	}
+	
+	public String getCurrentDayTotalUnits() {
+		String currentDayTotalUnits = "";
+		
+		String query = "SELECT COUNT(*) "
+				+ "FROM \"kpi_values\" kv "
+				+ "WHERE kv.\"timestamp\" "
+					+ "BETWEEN CAST(CONCAT(CAST((SELECT MAX(kv.\"timestamp\") FROM \"kpi_values\" kv) AS DATE), ' 00:00:00.0') AS TIMESTAMP) "
+					+ "AND (SELECT MAX(kv.\"timestamp\") FROM \"kpi_values\" kv);";
+		
+		dBUtil.openConnection(dbName);
+		
+		log.saveToFile("<Processing query>"+query);
+		
+		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
+		
+        try {
+        	if (queryResult.next()) {
+        		currentDayTotalUnits = (String)queryResult.getObject(1);
 
+	        	if (currentDayTotalUnits  == null) {
+	        		currentDayTotalUnits = "";
+	            }
+	        	
+        	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		dBUtil.closeConnection();
+		
+		return currentDayTotalUnits;
+	}
 	
 	private void setTitle(Integer kpiId) {
 		dBUtil.openConnection(dbName);

@@ -208,8 +208,11 @@ public class Main extends AbstractHandler
 		try
 		{
 			JSONObject obj = new JSONObject();
+			
+//			dAO.getCurrentDayTotalUnits();
+			
 			obj.put("oee", 87);
-			obj.put("totalUnits", 1259);
+			obj.put("totalUnits", 1834);
 			obj.put("scrapRate", 11);
 			return obj;
 		}
