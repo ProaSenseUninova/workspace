@@ -323,11 +323,11 @@ public class DatabaseAccessObject {
 		switch (sI) {
 		case HOURLY: labelName = (new SimpleDateFormat("HH'h' dd MMM")).format(Timestamp.valueOf(element));
 			break;
-		case DAILY: labelName = (new SimpleDateFormat("dd MMM''yy")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
+		case DAILY: labelName = (new SimpleDateFormat("dd MMM ''yy")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
 			break;
-		case MONTHLY: labelName = (new SimpleDateFormat("'W'MMM''yy")).format(Timestamp.valueOf(element)); // "April" 
+		case MONTHLY: labelName = (new SimpleDateFormat("MMM ''yy")).format(Timestamp.valueOf(element)); // "April" 
 			break;
-		case WEEKLY: labelName = (new SimpleDateFormat("ww''yy")).format(Timestamp.valueOf(element));
+		case WEEKLY: labelName = (new SimpleDateFormat("'W'ww''yy")).format(Timestamp.valueOf(element));
 			break;
 		case YEARLY: labelName = (new SimpleDateFormat("yyyy")).format(Timestamp.valueOf(element));
 			break;
