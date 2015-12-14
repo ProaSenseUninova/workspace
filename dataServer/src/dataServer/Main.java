@@ -569,9 +569,9 @@ public class Main extends AbstractHandler
     
 	public static void main(String[] args) throws SQLException
 	{
-		int port = 8085;
 		try
 		{
+			int port = args.length==0?8085:Integer.parseInt(args[0]);
 	        Server server = new Server(port);
 	        server.setHandler(new Main());
 			server.start();
