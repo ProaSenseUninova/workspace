@@ -152,7 +152,7 @@ public class DatabaseAccessObject {
 		switch (kpiId){
 			case 1:break;
 			case 2:break;
-			case 3:break;
+			case 3:
 			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
 //				String tmpData = "[";
 				String legend = "[";
@@ -196,8 +196,12 @@ public class DatabaseAccessObject {
 		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
 		if (!type.equals(TableValueType.GLOBAL)){
 			Integer numTableElements = getMaxId(type.toString().toLowerCase());
-			for (int k = 1; k<=numTableElements;k++)
-				alrt.add(getOneScrapRate(type, granularity, startTime, endTime, k));
+			for (int k = 1; k<=numTableElements;k++){
+				ResultTable tbResult = getOneScrapRate(type, granularity, startTime, endTime, k);
+				if (tbResult.resultsRows.size() != 0)
+					alrt.add(tbResult);
+			}
+				
 		}
 			
 		return alrt;
