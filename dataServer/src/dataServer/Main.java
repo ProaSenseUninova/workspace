@@ -188,7 +188,7 @@ public class Main extends AbstractHandler
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
 			Object labels = dAO.getXLabels(samplingInterval);
-			Object title = dAO.getTitle();
+			Object title = dAO.getTitle(kpiId);
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);

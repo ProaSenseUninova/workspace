@@ -61,6 +61,11 @@ public class ResultTable {
 				   typeTableAlias = "GLB";
 				   typeTableName = "GLOBAL";
 				   break;
+		case SHIFT: partsTableAlias = "shftp";
+			   scrappedPartsTableAlias = "shfts";
+			   typeTableAlias = "SHFT";
+			   typeTableName = "SHIFT";
+			break;
 		case KPI:
 			break;
 		case KPI_AGG_TYE:
@@ -72,8 +77,6 @@ public class ResultTable {
 		case KPI_VALUES:
 			break;
 		case SENSOR:
-			break;
-		case SHIFT:
 			break;
 		default:
 			break;

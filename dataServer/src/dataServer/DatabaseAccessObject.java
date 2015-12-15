@@ -148,11 +148,11 @@ public class DatabaseAccessObject {
 		Object data = null;
 		JSONParser parser = new JSONParser();
 		
-		setTitle(kpiId);
+//		setTitle(kpiId);
 		switch (kpiId){
 			case 1:break;
 			case 2:break;
-			case 3:
+			case 3: break;
 			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
 //				String tmpData = "[";
 				String legend = "[";
@@ -342,7 +342,8 @@ public class DatabaseAccessObject {
 		
 	}
 	
-	public Object getTitle() {
+	public Object getTitle(Integer kpiId) {
+		setTitle(kpiId);
 		JSONParser parser = new JSONParser();
 		Object result = null;
 
