@@ -142,7 +142,6 @@ public class Main extends AbstractHandler
 				
 		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			writeLogMsg("Error: "+e.getMessage());
 		}
 			
@@ -179,12 +178,6 @@ public class Main extends AbstractHandler
 		{
 			JSONParser parser = new JSONParser();
 			JSONObject obj = new JSONObject();
-//			Object data = parser.parse("[[10.63, 5.95, 4.93, 9.06, 5.95, 6.30],"
-//									 + "[15.49, 11.31, 3.10, 16.36, 0.70, 0.22],"
-//									 + "[13.40, 13.87, 0.25, 8.80, 9.17, 0.56],"
-//									 + "[7.05, 3.68, 9.10, 4.58, 7.33, 9.40],"
-//									 + "[1.41, 0.19, 2.04, 7.57, 2.71, 6.46]]");
-
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
 			Object labels = dAO.getXLabels(samplingInterval);
@@ -230,29 +223,29 @@ public class Main extends AbstractHandler
 	
 	public Object getHeatMapData(Map<String,String>requestData)
 	{
-		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
-		Timestamp startTime = null;
-		Timestamp endTime = null;
-		
-		TableValueType tableValueType = null;
-		
-		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
-			tableValueType = TableValueType.NONE;
-		}
-		else
-		{
-			Object x = requestData.get("contextualInformation");
-			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
-		}
-
-		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
-		String startTimeStr = requestData.get("startTime");
-		String endTimeStr = requestData.get("endTime");
-		
-		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
-			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
-			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
-		}
+//		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+//		Timestamp startTime = null;
+//		Timestamp endTime = null;
+//		
+//		TableValueType tableValueType = null;
+//		
+//		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
+//			tableValueType = TableValueType.NONE;
+//		}
+//		else
+//		{
+//			Object x = requestData.get("contextualInformation");
+//			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+//		}
+//
+//		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
+//		String startTimeStr = requestData.get("startTime");
+//		String endTimeStr = requestData.get("endTime");
+//		
+//		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
+//			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
+//			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+//		}
 		
 		try
 		{
