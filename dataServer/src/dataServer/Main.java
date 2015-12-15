@@ -69,7 +69,7 @@ public class Main extends AbstractHandler
 				}
 				else if(tableName.contains("getHeatMapData"))
 				{
-					response.getWriter().println(getHeatMapData());
+					response.getWriter().println(getHeatMapData(queryParams));
 				}		
 				else if(tableName.contains("getRealTimeKpis"))
 				{
@@ -188,10 +188,12 @@ public class Main extends AbstractHandler
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
 			Object labels = dAO.getXLabels(samplingInterval);
+			Object labelsTimeStamp = dAO.getXLabelsTimeStamp();
 			Object title = dAO.getTitle(kpiId);
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
+			obj.put("labelsTimeStamp", labelsTimeStamp);
 			obj.put("title", title);
 			obj.put("subTitle", "Source: use case data");
 			
@@ -226,8 +228,32 @@ public class Main extends AbstractHandler
 		return paramString.substring(paramString.indexOf("=")+1);
 	}
 	
-	public Object getHeatMapData()
+	public Object getHeatMapData(Map<String,String>requestData)
 	{
+		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+		Timestamp startTime = null;
+		Timestamp endTime = null;
+		
+		TableValueType tableValueType = null;
+		
+		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
+			tableValueType = TableValueType.NONE;
+		}
+		else
+		{
+			Object x = requestData.get("contextualInformation");
+			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+		}
+
+		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
+		String startTimeStr = requestData.get("startTime");
+		String endTimeStr = requestData.get("endTime");
+		
+		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
+			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
+			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+		}
+		
 		try
 		{
 			JSONObject obj = new JSONObject();

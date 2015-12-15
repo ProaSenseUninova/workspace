@@ -342,6 +342,28 @@ public class DatabaseAccessObject {
 		
 	}
 	
+	public Object getXLabelsTimeStamp(){
+		JSONParser parser = new JSONParser();
+		Object result = null;
+
+		try {
+			String tmp = "[";
+			for (int i=0;i<_refRows.length;i++){
+				tmp += "\""+getLabelNameTimeStamp(_refRows[i])+"\",";
+			}
+			tmp = tmp.substring(0, tmp.length()-1);
+			tmp += "]";
+			result = parser.parse(tmp);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	private Long getLabelNameTimeStamp(String element){
+		return Timestamp.valueOf(element).getTime();
+		
+	}
 	public Object getTitle(Integer kpiId) {
 		setTitle(kpiId);
 		JSONParser parser = new JSONParser();
