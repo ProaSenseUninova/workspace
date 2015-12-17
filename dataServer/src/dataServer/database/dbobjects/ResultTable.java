@@ -25,12 +25,7 @@ public class ResultTable {
 	Timestamp endTime = null;
 	public Integer columnQty = 0;
 	
-//	private String[][] _heatMap;
-	
 	public ArrayList<ResultTableElement> resultsRows = new ArrayList<ResultTableElement>();
-	
-//	public ArrayList<String> varXUnique = new ArrayList<String>();
-//	public ArrayList<String> varYUnique = new ArrayList<String>();
 	
 	public ResultTable(){
 		
@@ -166,32 +161,6 @@ public class ResultTable {
 		return tableVT.toString();
 	}
 	
-//	public void setHeatMap(){
-//		Integer xSize = varXUnique.size();
-//		Integer ySize = varYUnique.size();
-//		Integer varXPos = -1, varYPos = -1;
-//		String value = "";
-//		
-//		_heatMap = new String[xSize][ySize];
-//		
-//		// _heatMap matrix initialization
-//		for (int i=0;i<xSize;i++)
-//			for (int j=0;j<ySize;j++){
-//				_heatMap[i][j] = "null";
-//			}
-//		
-//		// populate _heatMap matrix 
-//		for (int i = 0; i<resultsRows.size();i++) {
-//			varXPos = varXUnique.indexOf(resultsRows.get(i).columnValues[0]);
-//			varYPos = varYUnique.indexOf(resultsRows.get(i).columnValues[1]);
-//			value = resultsRows.get(i).columnValues[2];
-//			
-//			_heatMap[varXPos][varYPos] = value;
-//		}
-//		
-//		
-//	}
-	
 	
 	public Object toJSonObject(){
 		Object jsonObject = new JSONObject();
@@ -239,25 +208,6 @@ public class ResultTable {
 		return jsonObject;
 	}
 	
-//	public Object toJSonObjectHeatMap(){
-//		Object jsonObject = new JSONObject();
-//		JSONParser parser = new JSONParser();
-//		ArrayList<String> tempArrStr = new ArrayList<String>();
-//
-//		for (int i=0;i<varXUnique.size();i++){
-//			for (int j=0;j<varYUnique.size();j++){
-//				tempArrStr.add("{\"varX\":"+(i+1)+", \"varY\":"+(j+1)+", \"value\":"+_heatMap[i][j]+"}");
-//			}
-//		}
-//
-//		try {
-//			jsonObject = parser.parse(tempArrStr.toString());
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		return jsonObject;
-//	}
-
 	public Object toJsonObjectLegend(){
 		Object jsonObject = new JSONObject();
 		JSONParser parser = new JSONParser();

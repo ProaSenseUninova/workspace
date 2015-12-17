@@ -153,19 +153,9 @@ public class DatabaseAccessObject {
 			Timestamp elementName) {
 		
 		HeatMap heatMap = new HeatMap(type, samplingInterval);
-//		String query = resultTable.getResultTableQueryString(id, startTime, endTime);
 		
 		String query = heatMap.getHeatMapQueryString(); 
-//				"SELECT pd.\"name\" as \"varX\", sfht.\"name\" as \"varY\", COUNT(*) as \"value\""
-//				+ " FROM \"kpi_values\" kv"
-//				+ "	INNER JOIN \"product\" pd ON \"product_id\" = pd.\"id\""
-//				+ " INNER JOIN \"shift\" sfht ON \"shift_id\" = sfht.\"id\""
-//				+ " WHERE MONTH(CAST(kv.\"timestamp\" AS DATE)) = /* MONTH(CAST(kv.\"timestamp\" AS DATE)) */2"
-//				+ " AND \"machine_id\" = 1"
-//				+ " AND \"kpi_id\" = 3"
-//				+ " GROUP BY \"varX\", \"varY\""
-//				+ " ORDER BY \"varX\", \"varY\";";
-		
+
 		dBUtil.openConnection(dbName);
 		log.saveToFile("<Processing query>"+query);
 		

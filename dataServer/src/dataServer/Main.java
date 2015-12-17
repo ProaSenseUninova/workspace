@@ -292,35 +292,15 @@ public class Main extends AbstractHandler
 		{
 			JSONObject obj = new JSONObject();
 			JSONParser parser = new JSONParser();
-//			Object data = parser.parse("[{\"varY\":1,\"varX\":1,\"value\":9},"
-//									  + "{\"varY\":1,\"varX\":2,\"value\":78},"
-//									  + "{\"varY\":1,\"varX\":3,\"value\":123},"
-//									  + "{\"varY\":1,\"varX\":4,\"value\":114},"
-//									  + "{\"varY\":1,\"varX\":5,\"value\":8},"
-//									  + "{\"varY\":1,\"varX\":6,\"value\":12},"
-//									  + "{\"varY\":2,\"varX\":1,\"value\":19},"
-//									  + "{\"varY\":2,\"varX\":2,\"value\":58},"
-//									  + "{\"varY\":2,\"varX\":3,\"value\":15},"
-//									  + "{\"varY\":2,\"varX\":4,\"value\":132},"
-//									  + "{\"varY\":2,\"varX\":5,\"value\":5},"
-//									  + "{\"varY\":2,\"varX\":6,\"value\":32},"
-//									  + "{\"varY\":3,\"varX\":1,\"value\":10},"
-//									  + "{\"varY\":3,\"varX\":2,\"value\":92},"
-//									  + "{\"varY\":3,\"varX\":3,\"value\":35},"
-//									  + "{\"varY\":3,\"varX\":4,\"value\":72},"
-//									  + "{\"varY\":3,\"varX\":5,\"value\":38},"
-//									  + "{\"varY\":3,\"varX\":6,\"value\":88}]");
-//			Object yLabels = parser.parse("[\"Evening\", \"Afternoon\", \"Moorning\"]");
-//			Object xLabels = parser.parse("[\"Product A\", \"Product B\"]");
-			
 			
 			Object data = dAO.getHeatMapData(kpiId, tableValueType, startTime, endTime, samplingInterval, contextName, varX, varY, elementName);
 			Object yLabels = dAO.getHeatMapYLabels();
 			Object xLabels = dAO.getHeatMapXLabels();
+			Object title = dAO.getTitle(kpiId);
 			obj.put("data", data);
 			obj.put("xLabels", xLabels);
 			obj.put("yLabels", yLabels);
-			obj.put("title", "Availability per shift per product");
+			obj.put("title", title+" per shift per product");
 			return obj;
 		}
 		catch(Exception e)
