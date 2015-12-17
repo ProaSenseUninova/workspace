@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
+import java.awt.image.renderable.ContextualRenderedImageFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -58,7 +59,7 @@ public class Main extends AbstractHandler
 			if(queryString!=null)
 			{
 				queryParams = splitQuery(queryString);
-				_log.saveToFile("<request>"+queryString+"</request>");
+				writeLogMsg("<request>"+queryString+"</request>");
 			}
 			if(dbName.equals("func"))
 			{
@@ -178,11 +179,16 @@ public class Main extends AbstractHandler
 		{
 			JSONParser parser = new JSONParser();
 			JSONObject obj = new JSONObject();
+			
 			Object data = dAO.getData(kpiId, tableValueType, samplingInterval, startTime, endTime);
 			Object legend = dAO.getLegends();
 			Object labels = dAO.getXLabels(samplingInterval);
 			Object labelsTimeStamp = dAO.getXLabelsTimeStamp();
 			Object title = dAO.getTitle(kpiId);
+			
+			_log.saveToFile(labels.toString());
+			_log.saveToFile(labelsTimeStamp.toString());
+			
 			obj.put("data", data);
 			obj.put("legend", legend);
 			obj.put("labels", labels);
@@ -221,56 +227,96 @@ public class Main extends AbstractHandler
 		return paramString.substring(paramString.indexOf("=")+1);
 	}
 	
-	public Object getHeatMapData(Map<String,String>requestData)
+	public Object getHeatMapData(Map<String,String> requestData)
 	{
+		// TODO: Hardcoded values to test - Comment or delete in production mode
+		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+		Timestamp startTime = null;
+		Timestamp endTime = null;
+		
+		TableValueType tableValueType = null;
+		tableValueType = TableValueType.MACHINE;
+		startTime = new Timestamp(Long.parseLong("1427842800000"));
+		endTime = new Timestamp(Long.parseLong("1427842800000"));
+		TableValueType varX = TableValueType.PRODUCT;
+		TableValueType varY = TableValueType.SHIFT;
+		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
+		String contextName = "Global" + requestData.get("contextName");
+//		String elementNameStr = requestData.get("elementName");
+		Timestamp elementName = new Timestamp(Long.parseLong("1427842800000"));
+		
+		// End of Hardcoded values to test - Uncomment below for production
+		
 //		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
 //		Timestamp startTime = null;
 //		Timestamp endTime = null;
-//		
-//		TableValueType tableValueType = null;
-//		
 //		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
 //			tableValueType = TableValueType.NONE;
 //		}
 //		else
 //		{
-//			Object x = requestData.get("contextualInformation");
 //			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
 //		}
-//
+
 //		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
 //		String startTimeStr = requestData.get("startTime");
 //		String endTimeStr = requestData.get("endTime");
-//		
+		
 //		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
 //			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
 //			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+//		}
+
+//		String contextName = requestData.get("contextName");
+		
+		
+//		if ( (requestData.get("varX")).equals(null) || (requestData.get("varY")).equals(null) || 
+//				((requestData.get("varX")).equals("")) || ((requestData.get("varY")).equals("")) ){
+//			varX = TableValueType.NONE;
+//			varY = TableValueType.NONE;
+//		}
+//		else
+//		{
+//			varX = TableValueType.valueOf(getParamValueOf(requestData.get("varX").toUpperCase()));
+//			varY = TableValueType.valueOf(getParamValueOf(requestData.get("varY").toUpperCase()));
+//		}
+
+//		String elementNameStr = requestData.get("elementName");
+//		Timestamp elementName = null;
+		
+//		if ( elementNameStr != null )   {
+//			elementName = new Timestamp(Long.parseLong(requestData.get("elementName")));
 //		}
 		
 		try
 		{
 			JSONObject obj = new JSONObject();
 			JSONParser parser = new JSONParser();
-			Object data = parser.parse("[{\"varY\":1,\"varX\":1,\"value\":9},"
-									  + "{\"varY\":1,\"varX\":2,\"value\":78},"
-									  + "{\"varY\":1,\"varX\":3,\"value\":123},"
-									  + "{\"varY\":1,\"varX\":4,\"value\":114},"
-									  + "{\"varY\":1,\"varX\":5,\"value\":8},"
-									  + "{\"varY\":1,\"varX\":6,\"value\":12},"
-									  + "{\"varY\":2,\"varX\":1,\"value\":19},"
-									  + "{\"varY\":2,\"varX\":2,\"value\":58},"
-									  + "{\"varY\":2,\"varX\":3,\"value\":15},"
-									  + "{\"varY\":2,\"varX\":4,\"value\":132},"
-									  + "{\"varY\":2,\"varX\":5,\"value\":5},"
-									  + "{\"varY\":2,\"varX\":6,\"value\":32},"
-									  + "{\"varY\":3,\"varX\":1,\"value\":10},"
-									  + "{\"varY\":3,\"varX\":2,\"value\":92},"
-									  + "{\"varY\":3,\"varX\":3,\"value\":35},"
-									  + "{\"varY\":3,\"varX\":4,\"value\":72},"
-									  + "{\"varY\":3,\"varX\":5,\"value\":38},"
-									  + "{\"varY\":3,\"varX\":6,\"value\":88}]");
-			Object yLabels = parser.parse("[\"Evening\", \"Afternoon\", \"Moorning\"]");
-			Object xLabels = parser.parse("[\"Product A\", \"Product B\", \"Product C\", \"Product D\", \"product E\",\"Product F\"]");
+//			Object data = parser.parse("[{\"varY\":1,\"varX\":1,\"value\":9},"
+//									  + "{\"varY\":1,\"varX\":2,\"value\":78},"
+//									  + "{\"varY\":1,\"varX\":3,\"value\":123},"
+//									  + "{\"varY\":1,\"varX\":4,\"value\":114},"
+//									  + "{\"varY\":1,\"varX\":5,\"value\":8},"
+//									  + "{\"varY\":1,\"varX\":6,\"value\":12},"
+//									  + "{\"varY\":2,\"varX\":1,\"value\":19},"
+//									  + "{\"varY\":2,\"varX\":2,\"value\":58},"
+//									  + "{\"varY\":2,\"varX\":3,\"value\":15},"
+//									  + "{\"varY\":2,\"varX\":4,\"value\":132},"
+//									  + "{\"varY\":2,\"varX\":5,\"value\":5},"
+//									  + "{\"varY\":2,\"varX\":6,\"value\":32},"
+//									  + "{\"varY\":3,\"varX\":1,\"value\":10},"
+//									  + "{\"varY\":3,\"varX\":2,\"value\":92},"
+//									  + "{\"varY\":3,\"varX\":3,\"value\":35},"
+//									  + "{\"varY\":3,\"varX\":4,\"value\":72},"
+//									  + "{\"varY\":3,\"varX\":5,\"value\":38},"
+//									  + "{\"varY\":3,\"varX\":6,\"value\":88}]");
+//			Object yLabels = parser.parse("[\"Evening\", \"Afternoon\", \"Moorning\"]");
+//			Object xLabels = parser.parse("[\"Product A\", \"Product B\"]");
+			
+			
+			Object data = dAO.getHeatMapData(kpiId, tableValueType, startTime, endTime, samplingInterval, contextName, varX, varY, elementName);
+			Object yLabels = dAO.getHeatMapYLabels();
+			Object xLabels = dAO.getHeatMapXLabels();
 			obj.put("data", data);
 			obj.put("xLabels", xLabels);
 			obj.put("yLabels", yLabels);

@@ -16,6 +16,7 @@ import org.json.simple.parser.ParseException;
 
 import dataServer.database.DBConfig;
 import dataServer.database.DBUtils;
+import dataServer.database.dbobjects.HeatMap;
 import dataServer.database.dbobjects.KpiDataObject;
 import dataServer.database.dbobjects.ResultTable;
 import dataServer.database.dbobjects.ResultTableElement;
@@ -36,6 +37,10 @@ public class DatabaseAccessObject {
 	private Integer _valueRefQty;
 	private boolean _valueRefQtyFlag = false;
 	private String[] _refRows;
+	private Object _heatMapXLabels;
+	private Object _heatMapYLabels;
+	private String[][] _heatMap;
+	
 		
 	public int getNameId(String tableName, String valueName){
 		int id=0;
@@ -143,7 +148,79 @@ public class DatabaseAccessObject {
 		return true;
 	}
 	
+	public Object getHeatMapData(Integer kpiId, TableValueType type, Timestamp startTime, Timestamp endTime,
+			SamplingInterval samplingInterval, String contextName, TableValueType varX, TableValueType varY,
+			Timestamp elementName) {
+		
+		HeatMap heatMap = new HeatMap(type, samplingInterval);
+//		String query = resultTable.getResultTableQueryString(id, startTime, endTime);
+		
+		String query = heatMap.getHeatMapQueryString(); 
+//				"SELECT pd.\"name\" as \"varX\", sfht.\"name\" as \"varY\", COUNT(*) as \"value\""
+//				+ " FROM \"kpi_values\" kv"
+//				+ "	INNER JOIN \"product\" pd ON \"product_id\" = pd.\"id\""
+//				+ " INNER JOIN \"shift\" sfht ON \"shift_id\" = sfht.\"id\""
+//				+ " WHERE MONTH(CAST(kv.\"timestamp\" AS DATE)) = /* MONTH(CAST(kv.\"timestamp\" AS DATE)) */2"
+//				+ " AND \"machine_id\" = 1"
+//				+ " AND \"kpi_id\" = 3"
+//				+ " GROUP BY \"varX\", \"varY\""
+//				+ " ORDER BY \"varX\", \"varY\";";
+		
+		dBUtil.openConnection(dbName);
+		log.saveToFile("<Processing query>"+query);
+		
+		ResultSet queryResult = dBUtil.processQuery(query);
+		log.saveToFile("<Query processed>");
+		
+        try {
+        	ResultSetMetaData rMD = queryResult.getMetaData();
+        	Integer colN = rMD.getColumnCount();
+        	heatMap.columnQty = colN;
+
+        	ResultTableElement resultRow = new ResultTableElement(type, colN);
+        	
+        	for (; queryResult.next(); ) {
+
+				for (int i = 0; i<rMD.getColumnCount(); i++) {
+					resultRow.columnsNames.add(rMD.getColumnLabel(i+1));
+					if (queryResult.getObject(i+1)==null)
+						resultRow.columnValues[i] = "null";
+					else{
+						resultRow.columnValues[i] = queryResult.getObject(i+1).toString();
+						switch (i){
+						case 0: if (!heatMap.varXUnique.contains(resultRow.columnValues[i])) {
+									heatMap.varXUnique.add(resultRow.columnValues[i]);
+								}
+								break;
+						case 1: if (!heatMap.varYUnique.contains(resultRow.columnValues[i])) {
+									heatMap.varYUnique.add(resultRow.columnValues[i]);
+								}
+								break;
+								
+						default:break;
+						}
+					}
+				}
+
+				heatMap.resultsRows.add(resultRow);
+				resultRow = new ResultTableElement(type, colN);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		dBUtil.closeConnection();
+		heatMap.setHeatMapLabels();
+		
+		_heatMapXLabels = heatMap.getHeatMapXLabels();
+		_heatMapYLabels = heatMap.getHeatMapYLabels();
+		
+		heatMap.setHeatMapValues();
+		
+		return heatMap.toJSonObjectHeatMap();
+	}
 	
+
 	public Object getData(Integer kpiId, TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		Object data = null;
 		JSONParser parser = new JSONParser();
@@ -288,7 +365,6 @@ public class DatabaseAccessObject {
 		return resultTable;
 	}
 	
-	
 	private void initializeValueRefQtyVector(ArrayList<ResultTableElement> rows){
 		_valueRefQty = rows.size();
     	_refRows = new String[_valueRefQty];
@@ -361,7 +437,8 @@ public class DatabaseAccessObject {
 	}
 	
 	private Long getLabelNameTimeStamp(String element){
-		return Timestamp.valueOf(element).getTime();
+//		return Timestamp.valueOf(element).getTime();
+		return Long.parseLong(""+Timestamp.valueOf(element).getTime());
 		
 	}
 	public Object getTitle(Integer kpiId) {
@@ -437,7 +514,14 @@ public class DatabaseAccessObject {
 		dBUtil.closeConnection();
 	}
 	
+	public Object getHeatMapXLabels() {
+		return _heatMapXLabels;
+	}
 	
+	public Object getHeatMapYLabels() {
+		return _heatMapYLabels;
+	}
+
 	public static void main(String[] args) {
 //		DatabaseAccessObject dAO = new DatabaseAccessObject();
 //		LoggingSystem log = LoggingSystem.getLog();
@@ -499,6 +583,10 @@ public class DatabaseAccessObject {
 //		dAO.getNameId("machine", "KM1");
 //		dAO.getNameId("kpi", "");
 	}
+
+
+
+
 
 
 }
