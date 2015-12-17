@@ -1,5 +1,6 @@
 package dataServer.database.dbobjects;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,6 +19,23 @@ public class HeatMap extends ResultTable {
 
 	private Object _heatMapXLabels;
 	private Object _heatMapYLabels;
+	
+	private Integer kpiId;
+	/* moment of the point requested in UI*/
+	private Timestamp moment;
+
+	/*name of the context element for which a heatmap is requested. ex: for machine id = 2, this field would have the name of the machine number 2*/
+	private String contextElementName;
+	
+	/*context type to appear on the heatmap X axis*/
+	private TableValueType varXtype;
+	/*context type to appear on the heatmap X axis*/
+	private TableValueType varYtype;
+
+	private Timestamp startTime;
+	private Timestamp endTime;
+	
+	
 
 	public HeatMap(TableValueType type, SamplingInterval samplingInterval) {
 		super(type, samplingInterval);
@@ -60,6 +78,11 @@ public class HeatMap extends ResultTable {
 		}
 	}
 	
+	public void setHeatMapLabels() {
+		setHeatMapXLabels(varXUnique);
+		setHeatMapYLabels(varYUnique);
+	}
+
 	public Object getHeatMapYLabels() {
 		return _heatMapYLabels;
 	}
@@ -113,8 +136,4 @@ public class HeatMap extends ResultTable {
 		return jsonObject;
 	}
 
-	public void setHeatMapLabels() {
-		setHeatMapXLabels(varXUnique);
-		setHeatMapYLabels(varYUnique);
-	}
 }
