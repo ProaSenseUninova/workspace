@@ -229,71 +229,51 @@ public class Main extends AbstractHandler
 	
 	public Object getHeatMapData(Map<String,String> requestData)
 	{
-		// TODO: Hardcoded values to test - Comment or delete in production mode
 		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
+		
+		TableValueType tableValueType = TableValueType.NONE;
+		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
+			tableValueType = TableValueType.NONE;
+		}
+		else
+		{
+			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
+		}
+
 		Timestamp startTime = null;
 		Timestamp endTime = null;
+		String startTimeStr = requestData.get("startTime");
+		String endTimeStr = requestData.get("endTime");
 		
-		TableValueType tableValueType = null;
-		tableValueType = TableValueType.MACHINE;
-		startTime = new Timestamp(Long.parseLong("1427842800000"));
-		endTime = new Timestamp(Long.parseLong("1427842800000"));
-		TableValueType varX = TableValueType.PRODUCT;
-		TableValueType varY = TableValueType.SHIFT;
+		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
+			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
+			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
+		}
+
 		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
-		String contextName = "KM-1000 (1)"/* requestData.get("contextName")*/;
-//		String elementNameStr = requestData.get("elementName");
-		Timestamp elementName = new Timestamp(Long.parseLong("1427842800000"));
-		
-		// End of Hardcoded values to test - Uncomment below for production
-		
-//		Integer kpiId = Integer.parseInt(requestData.get("kpiId"));
-//		Timestamp startTime = null;
-//		Timestamp endTime = null;
-//		if ( (requestData.get("contextualInformation")).equals(null) || ((requestData.get("contextualInformation")).equals("")) ){
-//			tableValueType = TableValueType.NONE;
-//		}
-//		else
-//		{
-//			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
-//		}
 
-//		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
-//		String startTimeStr = requestData.get("startTime");
-//		String endTimeStr = requestData.get("endTime");
+		String contextName = requestData.get("contextName");
 		
-//		if ( ( startTimeStr != null ) && ( endTimeStr != null))  {
-//			startTime = new Timestamp(Long.parseLong(requestData.get("startTime")));
-//			endTime = new Timestamp(Long.parseLong(requestData.get("endTime")));
-//		}
+		TableValueType varX = TableValueType.NONE;
+		TableValueType varY = TableValueType.NONE;
 
-//		String contextName = requestData.get("contextName");
-		
-		
-//		if ( (requestData.get("varX")).equals(null) || (requestData.get("varY")).equals(null) || 
-//				((requestData.get("varX")).equals("")) || ((requestData.get("varY")).equals("")) ){
-//			varX = TableValueType.NONE;
-//			varY = TableValueType.NONE;
-//		}
-//		else
-//		{
-//			varX = TableValueType.valueOf(getParamValueOf(requestData.get("varX").toUpperCase()));
-//			varY = TableValueType.valueOf(getParamValueOf(requestData.get("varY").toUpperCase()));
-//		}
+		if ( (requestData.get("varX")).equals(null) || (requestData.get("varY")).equals(null) || 
+				((requestData.get("varX")).equals("")) || ((requestData.get("varY")).equals("")) ){
+			varX = TableValueType.NONE;
+			varY = TableValueType.NONE;
+		}
+		else
+		{
+			varX = TableValueType.valueOf(getParamValueOf(requestData.get("varX").toUpperCase()));
+			varY = TableValueType.valueOf(getParamValueOf(requestData.get("varY").toUpperCase()));
+		}
 
-//		String elementNameStr = requestData.get("elementName");
-//		Timestamp elementName = null;
-		
-//		if ( elementNameStr != null )   {
-//			elementName = new Timestamp(Long.parseLong(requestData.get("elementName")));
-//		}
-		
 		try
 		{
 			JSONObject obj = new JSONObject();
 			JSONParser parser = new JSONParser();
 			
-			Object data = dAO.getHeatMapData(kpiId, tableValueType, startTime, endTime, samplingInterval, contextName, varX, varY, elementName);
+			Object data = dAO.getHeatMapData(kpiId, tableValueType, startTime, endTime, samplingInterval, contextName, varX, varY);
 			Object yLabels = dAO.getHeatMapYLabels();
 			Object xLabels = dAO.getHeatMapXLabels();
 			Object title = dAO.getTitle(kpiId);
