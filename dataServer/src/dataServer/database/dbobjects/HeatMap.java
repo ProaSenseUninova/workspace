@@ -37,24 +37,26 @@ public class HeatMap extends ResultTable {
 	private Timestamp startTime;
 	private Timestamp endTime;
 
-	public HeatMap(Integer kpiId, TableValueType type, SamplingInterval samplingInterval, Integer contextElementId, TableValueType varXAxis, TableValueType varYAxis) {
-		super(type, samplingInterval);
+	public HeatMap(Integer kpiId, TableValueType type, SamplingInterval granularity, Timestamp startTime, Integer contextElementId, TableValueType varXAxis, TableValueType varYAxis) {
+		super(type, granularity);
 		varXtype = varXAxis;
 		varYtype = varYAxis;
 		this.kpiId = kpiId;
 		this.contextElementId = contextElementId;
+		this.startTime = startTime;
 	}
 	
 	public String getHeatMapQueryString(){
 		String contextStr = super.tableVT.toString().toLowerCase();
 		String varXStr = varXtype.toString().toLowerCase();
 		String varYStr = varYtype.toString().toLowerCase();
+		
 		String query 	= "SELECT vx.\"name\" as \"varX\", vy.\"name\" as \"varY\", COUNT(*) as \"value\""
 				+ " FROM \"kpi_values\" kv"
 				+ "	INNER JOIN \""+varXStr+"\" vx ON \""+varXStr+"_id\" = vx.\"id\""
 				+ " INNER JOIN \""+varYStr+"\" vy ON \""+varYStr+"_id\" = vy.\"id\""
-				+ " WHERE MONTH(CAST(kv.\"timestamp\" AS DATE)) = /* MONTH(CAST(kv.\"timestamp\" AS DATE)) */2"
-				+ " AND \""+contextStr+"_id\" = 1"/*+contextElementId*/
+				+ " WHERE "+getSamplingIntervalWhereClause(super.samplingInterval, startTime)
+				+ " AND \""+contextStr+"_id\" = "+contextElementId
 				+ " AND \"kpi_id\" = 3"/*+kpiId*/
 				+ " GROUP BY \"varX\", \"varY\""
 				+ " ORDER BY \"varX\", \"varY\";";
@@ -69,6 +71,30 @@ public class HeatMap extends ResultTable {
 //				+ " GROUP BY \"varX\", \"varY\""
 //				+ " ORDER BY \"varX\", \"varY\";";
 		return query;
+	}
+	
+	private String getSamplingIntervalWhereClause(SamplingInterval granularity, Timestamp time){
+		String result = "";
+		switch (granularity){
+		case DAILY: result = "DAY(CAST(kv.\"timestamp\" AS DATE)) = DAY(CAST(TIMESTAMP'"+time+"' AS DATE)) ";
+			break;
+		case HOURLY: result = "HOUR(CAST(kv.\"timestamp\" AS TIME)) = HOUR(CAST(TIMESTAMP'"+time+"' AS TIME)) ";
+			break;
+		case MONTHLY: result = "MONTH(CAST(kv.\"timestamp\" AS DATE)) = MONTH(CAST(TIMESTAMP'"+time+"' AS DATE)) ";
+			break;
+		case WEEKLY: result = "MONTH(CAST(kv.\"timestamp\" AS DATE)) = MONTH(CAST(TIMESTAMP'"+time+"' AS DATE)) ";
+			break;
+		case MINUTELY: 
+			break;
+		case YEARLY: 
+			break;
+		case NONE:
+			break;
+		default:
+			break;
+		
+		}
+		return result;
 	}
 	
 	public void setHeatMapValues(){

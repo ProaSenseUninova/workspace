@@ -239,7 +239,7 @@ public class Main extends AbstractHandler
 		{
 			tableValueType = TableValueType.valueOf(getParamValueOf(requestData.get("contextualInformation").toUpperCase()));
 		}
-
+		
 		Timestamp startTime = null;
 		Timestamp endTime = null;
 		String startTimeStr = requestData.get("startTime");
@@ -276,7 +276,8 @@ public class Main extends AbstractHandler
 			Object data = dAO.getHeatMapData(kpiId, tableValueType, startTime, endTime, samplingInterval, contextName, varX, varY);
 			Object yLabels = dAO.getHeatMapYLabels();
 			Object xLabels = dAO.getHeatMapXLabels();
-			Object title = dAO.getTitle(kpiId);
+//			Object title = dAO.getTitle(kpiId);
+			Object title = "Scrapped parts";
 			obj.put("data", data);
 			obj.put("xLabels", xLabels);
 			obj.put("yLabels", yLabels);

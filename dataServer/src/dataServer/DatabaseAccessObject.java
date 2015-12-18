@@ -148,14 +148,13 @@ public class DatabaseAccessObject {
 		return true;
 	}
 	
-	public Object getHeatMapData(Integer kpiId, TableValueType type, Timestamp startTime, Timestamp endTime,
-			SamplingInterval samplingInterval, String contextName, TableValueType varX, TableValueType varY,
-			Timestamp elementName) {
+	public Object getHeatMapData(Integer kpiId, TableValueType contextualInformation, Timestamp startTime, Timestamp endTime,
+			SamplingInterval granularity, String contextName, TableValueType varX, TableValueType varY) {
 		
-		Integer contextElementId = getNameId(type.toString(), contextName);
+		Integer contextElementId = getNameId(contextualInformation.toString(), contextName);
 		contextElementId = (contextElementId==0)? 1:contextElementId;
 		
-		HeatMap heatMap = new HeatMap(kpiId, type, samplingInterval, contextElementId, varX, varY);
+		HeatMap heatMap = new HeatMap(kpiId, contextualInformation, granularity, startTime, contextElementId, varX, varY);
 		
 		String query = heatMap.getHeatMapQueryString(); 
 
@@ -170,7 +169,7 @@ public class DatabaseAccessObject {
         	Integer colN = rMD.getColumnCount();
         	heatMap.columnQty = colN;
 
-        	ResultTableElement resultRow = new ResultTableElement(type, colN);
+        	ResultTableElement resultRow = new ResultTableElement(contextualInformation, colN);
         	
         	for (; queryResult.next(); ) {
 
@@ -196,7 +195,7 @@ public class DatabaseAccessObject {
 				}
 
 				heatMap.resultsRows.add(resultRow);
-				resultRow = new ResultTableElement(type, colN);
+				resultRow = new ResultTableElement(contextualInformation, colN);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,7 +213,7 @@ public class DatabaseAccessObject {
 	}
 	
 
-	public Object getData(Integer kpiId, TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
+	public Object getData(Integer kpiId, TableValueType contextualInformation, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		Object data = null;
 		JSONParser parser = new JSONParser();
 		
@@ -223,7 +222,7 @@ public class DatabaseAccessObject {
 			case 1:break;
 			case 2:break;
 			case 3: break;
-			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(type, granularity, startTime, endTime);
+			case 4: ArrayList<ResultTable> tempResultTable = getScrapRate(contextualInformation, granularity, startTime, endTime);
 //				String tmpData = "[";
 				String legend = "[";
 				String[] tempDataStr = new String[tempResultTable.size()];
@@ -247,7 +246,7 @@ public class DatabaseAccessObject {
 					_legends = parser.parse(legend);
 				} catch (ParseException e) {
 					e.printStackTrace();
-					log.saveToFile("<Error parsing results kpiId="+kpiId+" contextualInformation="+type.toString()
+					log.saveToFile("<Error parsing results kpiId="+kpiId+" contextualInformation="+contextualInformation.toString()
 							+" granularity="+granularity+" startTime="+startTime+" endTime="+endTime+"> "+e.getMessage()+" </Error parsing results>");
 				}
 				
@@ -261,13 +260,13 @@ public class DatabaseAccessObject {
 	}
 
 
-	public ArrayList<ResultTable> getScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
+	public ArrayList<ResultTable> getScrapRate(TableValueType contextualInformation, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
 		ArrayList<ResultTable> alrt = new ArrayList<ResultTable>();
 		alrt.add(getOneScrapRate(TableValueType.GLOBAL, granularity, startTime, endTime));
-		if (!type.equals(TableValueType.GLOBAL)){
-			Integer numTableElements = getMaxId(type.toString().toLowerCase());
+		if (!contextualInformation.equals(TableValueType.GLOBAL)){
+			Integer numTableElements = getMaxId(contextualInformation.toString().toLowerCase());
 			for (int k = 1; k<=numTableElements;k++){
-				ResultTable tbResult = getOneScrapRate(type, granularity, startTime, endTime, k);
+				ResultTable tbResult = getOneScrapRate(contextualInformation, granularity, startTime, endTime, k);
 				if (tbResult.resultsRows.size() != 0)
 					alrt.add(tbResult);
 			}
@@ -277,8 +276,8 @@ public class DatabaseAccessObject {
 		return alrt;
 	}
 	
-	public ResultTable getOneScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime, Integer id){
-		ResultTable resultTable = new ResultTable(type, granularity);
+	public ResultTable getOneScrapRate(TableValueType contextualInformation, SamplingInterval granularity, Timestamp startTime, Timestamp endTime, Integer id){
+		ResultTable resultTable = new ResultTable(contextualInformation, granularity);
 		String query = resultTable.getResultTableQueryString(id, startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
@@ -292,7 +291,7 @@ public class DatabaseAccessObject {
         	Integer colN = rMD.getColumnCount();
         	resultTable.columnQty = colN;
 
-        	ResultTableElement resultRow = new ResultTableElement(type, colN);
+        	ResultTableElement resultRow = new ResultTableElement(contextualInformation, colN);
         	
         	for (; queryResult.next(); ) {
 
@@ -305,7 +304,7 @@ public class DatabaseAccessObject {
 				}
 
 				resultTable.resultsRows.add(resultRow);
-				resultRow = new ResultTableElement(type, colN);
+				resultRow = new ResultTableElement(contextualInformation, colN);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -315,8 +314,8 @@ public class DatabaseAccessObject {
 		return resultTable;
 	}
 	
-	public ResultTable getOneScrapRate(TableValueType type, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
-		ResultTable resultTable = new ResultTable(type, granularity);
+	public ResultTable getOneScrapRate(TableValueType contextualInformation, SamplingInterval granularity, Timestamp startTime, Timestamp endTime){
+		ResultTable resultTable = new ResultTable(contextualInformation, granularity);
 		String query = resultTable.getResultTableQueryString(startTime, endTime);
 		
 		dBUtil.openConnection(dbName);
@@ -330,7 +329,7 @@ public class DatabaseAccessObject {
         	Integer colN = rMD.getColumnCount();
         	resultTable.columnQty = colN;
         	
-        	ResultTableElement resultRow = new ResultTableElement(type, colN);
+        	ResultTableElement resultRow = new ResultTableElement(contextualInformation, colN);
         	
         	for (; queryResult.next(); ) {
 
@@ -343,7 +342,7 @@ public class DatabaseAccessObject {
 				}
 
 				resultTable.resultsRows.add(resultRow);
-				resultRow = new ResultTableElement(type, colN);
+				resultRow = new ResultTableElement(contextualInformation, colN);
 			}
         	
         	
@@ -373,14 +372,14 @@ public class DatabaseAccessObject {
 		return _legends;
 	}
 
-	public Object getXLabels(SamplingInterval sI){
+	public Object getXLabels(SamplingInterval granularity){
 		JSONParser parser = new JSONParser();
 		Object result = null;
 
 		try {
 			String tmp = "[";
 			for (int i=0;i<_refRows.length;i++){
-				tmp += "\""+getLabelName(sI, _refRows[i])+"\",";
+				tmp += "\""+getLabelName(granularity, _refRows[i])+"\",";
 			}
 			tmp = tmp.substring(0, tmp.length()-1);
 			tmp += "]";
@@ -391,9 +390,9 @@ public class DatabaseAccessObject {
 		return result;
 	}
 	
-	private String getLabelName(SamplingInterval sI, String element){
+	private String getLabelName(SamplingInterval granularity, String element){
 		String labelName ="";
-		switch (sI) {
+		switch (granularity) {
 		case HOURLY: labelName = (new SimpleDateFormat("HH'h' dd MMM")).format(Timestamp.valueOf(element));
 			break;
 		case DAILY: labelName = (new SimpleDateFormat("dd MMM ''yy")).format(Timestamp.valueOf(element)); //yyyy-mm-dd
@@ -440,10 +439,10 @@ public class DatabaseAccessObject {
 		Object result = null;
 
 		try {
-			String tmp = "[";
+			String tmp = "";
 			tmp += "\""+_graphTitle+"\",";
 			tmp = tmp.substring(0, tmp.length()-1);
-			tmp += "]";
+			tmp += "";
 			result = parser.parse(tmp);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -576,10 +575,4 @@ public class DatabaseAccessObject {
 //		dAO.getNameId("machine", "KM1");
 //		dAO.getNameId("kpi", "");
 	}
-
-
-
-
-
-
 }
