@@ -241,7 +241,7 @@ public class Main extends AbstractHandler
 		TableValueType varX = TableValueType.PRODUCT;
 		TableValueType varY = TableValueType.SHIFT;
 		SamplingInterval samplingInterval = SamplingInterval.valueOf(getParamValueOf(requestData.get("granularity").toUpperCase()));
-		String contextName = "Global" + requestData.get("contextName");
+		String contextName = "KM-1000 (1)"/* requestData.get("contextName")*/;
 //		String elementNameStr = requestData.get("elementName");
 		Timestamp elementName = new Timestamp(Long.parseLong("1427842800000"));
 		

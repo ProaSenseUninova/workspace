@@ -46,7 +46,7 @@ public class DatabaseAccessObject {
 		int id=0;
 		dBUtil.openConnection(dbName);
 		
-		String query = "SELECT \"id\" FROM \""+tableName+"\" WHERE \"name\"='"+valueName+"';";
+		String query = "SELECT \"id\" FROM \""+tableName.toLowerCase()+"\" WHERE \"name\"='"+valueName+"';";
 		
 		ResultSet queryResult = dBUtil.processQuery(query);
 		
@@ -152,7 +152,10 @@ public class DatabaseAccessObject {
 			SamplingInterval samplingInterval, String contextName, TableValueType varX, TableValueType varY,
 			Timestamp elementName) {
 		
-		HeatMap heatMap = new HeatMap(type, samplingInterval);
+		Integer contextElementId = getNameId(type.toString(), contextName);
+		contextElementId = (contextElementId==0)? 1:contextElementId;
+		
+		HeatMap heatMap = new HeatMap(kpiId, type, samplingInterval, contextElementId, varX, varY);
 		
 		String query = heatMap.getHeatMapQueryString(); 
 

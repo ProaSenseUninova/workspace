@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.hsqldb.Table;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -24,8 +25,9 @@ public class HeatMap extends ResultTable {
 	/* moment of the point requested in UI*/
 	private Timestamp moment;
 
-	/*name of the context element for which a heatmap is requested. ex: for machine id = 2, this field would have the name of the machine number 2*/
+	/*name and ID of the context element for which a heatmap is requested. ex: for machine id = 2, this field would have the name of the machine number 2*/
 	private String contextElementName;
+	private Integer contextElementId;
 	
 	/*context type to appear on the heatmap X axis*/
 	private TableValueType varXtype;
@@ -34,23 +36,38 @@ public class HeatMap extends ResultTable {
 
 	private Timestamp startTime;
 	private Timestamp endTime;
-	
-	
 
-	public HeatMap(TableValueType type, SamplingInterval samplingInterval) {
+	public HeatMap(Integer kpiId, TableValueType type, SamplingInterval samplingInterval, Integer contextElementId, TableValueType varXAxis, TableValueType varYAxis) {
 		super(type, samplingInterval);
+		varXtype = varXAxis;
+		varYtype = varYAxis;
+		this.kpiId = kpiId;
+		this.contextElementId = contextElementId;
 	}
 	
 	public String getHeatMapQueryString(){
-		String query 	= "SELECT pd.\"name\" as \"varX\", sfht.\"name\" as \"varY\", COUNT(*) as \"value\""
+		String contextStr = super.tableVT.toString().toLowerCase();
+		String varXStr = varXtype.toString().toLowerCase();
+		String varYStr = varYtype.toString().toLowerCase();
+		String query 	= "SELECT vx.\"name\" as \"varX\", vy.\"name\" as \"varY\", COUNT(*) as \"value\""
 				+ " FROM \"kpi_values\" kv"
-				+ "	INNER JOIN \"product\" pd ON \"product_id\" = pd.\"id\""
-				+ " INNER JOIN \"shift\" sfht ON \"shift_id\" = sfht.\"id\""
+				+ "	INNER JOIN \""+varXStr+"\" vx ON \""+varXStr+"_id\" = vx.\"id\""
+				+ " INNER JOIN \""+varYStr+"\" vy ON \""+varYStr+"_id\" = vy.\"id\""
 				+ " WHERE MONTH(CAST(kv.\"timestamp\" AS DATE)) = /* MONTH(CAST(kv.\"timestamp\" AS DATE)) */2"
-				+ " AND \"machine_id\" = 1"
-				+ " AND \"kpi_id\" = 3"
+				+ " AND \""+contextStr+"_id\" = 1"/*+contextElementId*/
+				+ " AND \"kpi_id\" = 3"/*+kpiId*/
 				+ " GROUP BY \"varX\", \"varY\""
 				+ " ORDER BY \"varX\", \"varY\";";
+		
+//		query 	= "SELECT pd.\"name\" as \"varX\", sfht.\"name\" as \"varY\", COUNT(*) as \"value\""
+//				+ " FROM \"kpi_values\" kv"
+//				+ "	INNER JOIN \"product\" pd ON \"product_id\" = pd.\"id\""
+//				+ " INNER JOIN \"shift\" sfht ON \"shift_id\" = sfht.\"id\""
+//				+ " WHERE MONTH(CAST(kv.\"timestamp\" AS DATE)) = /* MONTH(CAST(kv.\"timestamp\" AS DATE)) */2"
+//				+ " AND \"machine_id\" = 1"
+//				+ " AND \"kpi_id\" = 3"
+//				+ " GROUP BY \"varX\", \"varY\""
+//				+ " ORDER BY \"varX\", \"varY\";";
 		return query;
 	}
 	
